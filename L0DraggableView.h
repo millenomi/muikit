@@ -45,7 +45,7 @@
 
 // Called as the view begins performing an inertial slide to a given point.
 // Call made within the animation block that performs the slide.
-- (void) draggableView:(L0DraggableView*) view willBeginIntertialSlideToPoint:(CGPoint) point;
+- (void) draggableView:(L0DraggableView*) view willBeginInertialSlideToPoint:(CGPoint) point;
 
 // Called as the view stops performing an inertial slide to a given point.
 // If finished == NO, the slide was interrupted (eg because the user started dragging

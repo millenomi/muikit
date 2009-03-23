@@ -197,8 +197,8 @@ static inline BOOL L0VectorHasPointWithinAbsolute(CGPoint vector, CGFloat rangeA
 	
 	// ~~~~~~~~~~~~~~~
 	
-	if (delegate && [delegate respondsToSelector:@selector(draggableView:willBeginIntertialSlideToPoint:)])
-		[delegate draggableView:self willBeginIntertialSlideToPoint:center];
+	if (delegate && [delegate respondsToSelector:@selector(draggableView:willBeginInertialSlideToPoint:)])
+		[delegate draggableView:self willBeginInertialSlideToPoint:center];
 	
 	
 	if (delegate && [delegate respondsToSelector:@selector(draggableView:shouldMoveFromPoint:toAttractionPoint:)]) {
