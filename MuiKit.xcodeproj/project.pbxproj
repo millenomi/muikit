@@ -17,6 +17,20 @@
 		154B020C0F7816210082109B /* L0DraggableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B02020F7816210082109B /* L0DraggableView.m */; };
 		154B020D0F7816210082109B /* L0DraggableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B02030F7816210082109B /* L0DraggableView.h */; };
 		154B020E0F7816210082109B /* UIAlertView+L0Alert.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B02040F7816210082109B /* UIAlertView+L0Alert.h */; };
+		1559B5C60F7987F6005E4362 /* L0UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559B5C40F7987F6005E4362 /* L0UUID.m */; };
+		1559B5C70F7987F6005E4362 /* L0UUID.h in Headers */ = {isa = PBXBuildFile; fileRef = 1559B5C50F7987F6005E4362 /* L0UUID.h */; };
+		1559B5C80F7987F6005E4362 /* L0UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559B5C40F7987F6005E4362 /* L0UUID.m */; };
+		1559B5C90F7987F6005E4362 /* L0UUID.h in Headers */ = {isa = PBXBuildFile; fileRef = 1559B5C50F7987F6005E4362 /* L0UUID.h */; };
+		15B445740F78F9C700DA63E9 /* L0ExternalURLOpeningDetection.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B01FD0F7816210082109B /* L0ExternalURLOpeningDetection.h */; };
+		15B445750F78F9C700DA63E9 /* L0SolicitReviewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B01FF0F7816210082109B /* L0SolicitReviewController.h */; };
+		15B445760F78F9C700DA63E9 /* UIImage_L0RenderingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B02010F7816210082109B /* UIImage_L0RenderingAdditions.h */; };
+		15B445770F78F9C700DA63E9 /* L0DraggableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B02030F7816210082109B /* L0DraggableView.h */; };
+		15B445780F78F9C700DA63E9 /* UIAlertView+L0Alert.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B02040F7816210082109B /* UIAlertView+L0Alert.h */; };
+		15B4457A0F78F9C700DA63E9 /* L0ExternalURLOpeningDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B01FB0F7816210082109B /* L0ExternalURLOpeningDetection.m */; };
+		15B4457B0F78F9C700DA63E9 /* L0SolicitReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B01FC0F7816210082109B /* L0SolicitReviewController.m */; };
+		15B4457C0F78F9C700DA63E9 /* UIImage_L0RenderingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B01FE0F7816210082109B /* UIImage_L0RenderingAdditions.m */; };
+		15B4457D0F78F9C700DA63E9 /* UIAlertView+L0Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B02000F7816210082109B /* UIAlertView+L0Alert.m */; };
+		15B4457E0F78F9C700DA63E9 /* L0DraggableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B02020F7816210082109B /* L0DraggableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,10 +51,21 @@
 		154B02210F7816FD0082109B /* it */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/L0SolicitReview.strings; sourceTree = "<group>"; };
 		154B02220F78170B0082109B /* UIAlertView+L0Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+L0Alert.m"; sourceTree = "<group>"; };
 		154B02230F78170B0082109B /* UIAlertView+L0Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+L0Alert.h"; sourceTree = "<group>"; };
+		1559B5C40F7987F6005E4362 /* L0UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0UUID.m; sourceTree = "<group>"; };
+		1559B5C50F7987F6005E4362 /* L0UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0UUID.h; sourceTree = "<group>"; };
+		15B445830F78F9C700DA63E9 /* libMuiKit-Simulator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libMuiKit-Simulator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15B446660F79028E00DA63E9 /* MuiKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MuiKit.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		154B01EE0F78156D0082109B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15B4457F0F78F9C700DA63E9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -53,6 +78,7 @@
 		154B01DC0F7815560082109B = {
 			isa = PBXGroup;
 			children = (
+				15B4459F0F78FAD200DA63E9 /* SDK */,
 				154B02100F78163C0082109B /* Classes */,
 				154B01F10F78156D0082109B /* Products */,
 				154B01F60F7815CA0082109B /* MuiKit.xcconfig */,
@@ -63,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				154B01F00F78156D0082109B /* libMuiKit.a */,
+				15B445830F78F9C700DA63E9 /* libMuiKit-Simulator.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +97,7 @@
 		154B02100F78163C0082109B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1559B5C10F7987DE005E4362 /* UUIDs */,
 				154B02110F7816430082109B /* External URL Opening Detection */,
 				154B02120F7816510082109B /* Soliciting Reviews */,
 				154B02130F7816610082109B /* Image Rendering */,
@@ -128,6 +156,23 @@
 			name = "Draggable Views";
 			sourceTree = "<group>";
 		};
+		1559B5C10F7987DE005E4362 /* UUIDs */ = {
+			isa = PBXGroup;
+			children = (
+				1559B5C40F7987F6005E4362 /* L0UUID.m */,
+				1559B5C50F7987F6005E4362 /* L0UUID.h */,
+			);
+			name = UUIDs;
+			sourceTree = "<group>";
+		};
+		15B4459F0F78FAD200DA63E9 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				15B446660F79028E00DA63E9 /* MuiKit.h */,
+			);
+			name = SDK;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -140,15 +185,29 @@
 				154B020B0F7816210082109B /* UIImage_L0RenderingAdditions.h in Headers */,
 				154B020D0F7816210082109B /* L0DraggableView.h in Headers */,
 				154B020E0F7816210082109B /* UIAlertView+L0Alert.h in Headers */,
+				1559B5C70F7987F6005E4362 /* L0UUID.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15B445730F78F9C700DA63E9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15B445740F78F9C700DA63E9 /* L0ExternalURLOpeningDetection.h in Headers */,
+				15B445750F78F9C700DA63E9 /* L0SolicitReviewController.h in Headers */,
+				15B445760F78F9C700DA63E9 /* UIImage_L0RenderingAdditions.h in Headers */,
+				15B445770F78F9C700DA63E9 /* L0DraggableView.h in Headers */,
+				15B445780F78F9C700DA63E9 /* UIAlertView+L0Alert.h in Headers */,
+				1559B5C90F7987F6005E4362 /* L0UUID.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		154B01EF0F78156D0082109B /* MuiKit */ = {
+		154B01EF0F78156D0082109B /* MuiKit (iPhone) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 154B01F40F78156E0082109B /* Build configuration list for PBXNativeTarget "MuiKit" */;
+			buildConfigurationList = 154B01F40F78156E0082109B /* Build configuration list for PBXNativeTarget "MuiKit (iPhone)" */;
 			buildPhases = (
 				154B01EC0F78156D0082109B /* Headers */,
 				154B01ED0F78156D0082109B /* Sources */,
@@ -158,9 +217,26 @@
 			);
 			dependencies = (
 			);
-			name = MuiKit;
+			name = "MuiKit (iPhone)";
 			productName = MuiKit;
 			productReference = 154B01F00F78156D0082109B /* libMuiKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		15B445720F78F9C700DA63E9 /* MuiKit (Simulator) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15B445800F78F9C700DA63E9 /* Build configuration list for PBXNativeTarget "MuiKit (Simulator)" */;
+			buildPhases = (
+				15B445730F78F9C700DA63E9 /* Headers */,
+				15B445790F78F9C700DA63E9 /* Sources */,
+				15B4457F0F78F9C700DA63E9 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MuiKit (Simulator)";
+			productName = MuiKit;
+			productReference = 15B445830F78F9C700DA63E9 /* libMuiKit-Simulator.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -185,7 +261,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				154B01EF0F78156D0082109B /* MuiKit */,
+				154B01EF0F78156D0082109B /* MuiKit (iPhone) */,
+				15B445720F78F9C700DA63E9 /* MuiKit (Simulator) */,
 			);
 		};
 /* End PBXProject section */
@@ -200,6 +277,20 @@
 				154B02080F7816210082109B /* UIImage_L0RenderingAdditions.m in Sources */,
 				154B020A0F7816210082109B /* UIAlertView+L0Alert.m in Sources */,
 				154B020C0F7816210082109B /* L0DraggableView.m in Sources */,
+				1559B5C60F7987F6005E4362 /* L0UUID.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15B445790F78F9C700DA63E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15B4457A0F78F9C700DA63E9 /* L0ExternalURLOpeningDetection.m in Sources */,
+				15B4457B0F78F9C700DA63E9 /* L0SolicitReviewController.m in Sources */,
+				15B4457C0F78F9C700DA63E9 /* UIImage_L0RenderingAdditions.m in Sources */,
+				15B4457D0F78F9C700DA63E9 /* UIAlertView+L0Alert.m in Sources */,
+				15B4457E0F78F9C700DA63E9 /* L0DraggableView.m in Sources */,
+				1559B5C80F7987F6005E4362 /* L0UUID.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +313,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 154B01F60F7815CA0082109B /* MuiKit.xcconfig */;
 			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)";
+				GCC_PREFIX_HEADER = "$(INFINITELABS_TOOLS)/Common/iPhone/UIKit.pch";
 			};
 			name = Debug;
 		};
@@ -229,6 +323,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 154B01F60F7815CA0082109B /* MuiKit.xcconfig */;
 			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)";
+				GCC_PREFIX_HEADER = "$(INFINITELABS_TOOLS)/Common/iPhone/UIKit.pch";
 			};
 			name = Release;
 		};
@@ -257,6 +354,33 @@
 			};
 			name = Release;
 		};
+		15B445810F78F9C700DA63E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PREBINDING = NO;
+				PRODUCT_NAME = "MuiKit-Simulator";
+				SDKROOT = iphonesimulator2.2;
+			};
+			name = Debug;
+		};
+		15B445820F78F9C700DA63E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = "MuiKit-Simulator";
+				SDKROOT = iphonesimulator2.2;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -269,11 +393,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		154B01F40F78156E0082109B /* Build configuration list for PBXNativeTarget "MuiKit" */ = {
+		154B01F40F78156E0082109B /* Build configuration list for PBXNativeTarget "MuiKit (iPhone)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				154B01F20F78156E0082109B /* Debug */,
 				154B01F30F78156E0082109B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15B445800F78F9C700DA63E9 /* Build configuration list for PBXNativeTarget "MuiKit (Simulator)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15B445810F78F9C700DA63E9 /* Debug */,
+				15B445820F78F9C700DA63E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
