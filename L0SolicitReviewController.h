@@ -79,6 +79,8 @@
 	NSDate* firstLaunchDate;
 	NSUInteger numberOfLaunches;
 	BOOL didSolicitAlready;
+	
+	NSBundle* _resourcesBundle;
 }
 
 /*

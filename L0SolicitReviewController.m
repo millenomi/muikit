@@ -22,9 +22,18 @@
 // The number of launches before we solicit the user for a review.
 #define kL0SolicitReviewNumberofLaunchesBeforeSoliciting (5)
 
+@interface L0SolicitReviewController ()
+
+@property(retain) NSBundle* _resourcesBundle;
+
+@end
+
+
 @implementation L0SolicitReviewController
 
 @synthesize applicationName, applicationAppStoreURL, savesDefaults, firstLaunchDate, numberOfLaunches, didSolicitAlready;
+
+@synthesize _resourcesBundle;
 
 + (id) defaultController {
 	static id myself = nil; if (!myself)
@@ -67,6 +76,13 @@
 		
 		// Saves the defaults by default (ha!)
 		self.savesDefaults = YES;
+		
+		// Fetches the MuiKit.bundle resources bundle. If not existing,
+		// the _resourcesBundle will be nil, which fetches our alert from
+		// the main bundle (yay backward compatibility).
+		NSString* pathToResourcesBundle = [b pathForResource:@"MuiKit" ofType:@"bundle"];
+		if (pathToResourcesBundle)
+			self._resourcesBundle = [NSBundle bundleWithPath:pathToResourcesBundle];
 	}
 	
 	return self;
@@ -121,7 +137,7 @@
 		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:kL0SolicitReviewDoneAlreadyDefault];
 	
 	// "Do you want to rate %@?" "Cancel"/"Review"
-	UIAlertView* alert = [UIAlertView alertNamed:@"L0SolicitReview"];
+	UIAlertView* alert = [UIAlertView alertNamed:@"L0SolicitReview" inBundle:self._resourcesBundle];
 	alert.cancelButtonIndex = 0;
 	alert.delegate = self;
 	[alert setTitleFormat:nil, self.applicationName];
@@ -144,6 +160,10 @@
 - (void) solicit {
 	[self update];
 	[self performSelector:@selector(showAlertIfNeeded) withObject:nil afterDelay:2.0];
+}
+
+- (NSBundle*) _resourcesBundle {
+	
 }
 
 @end
