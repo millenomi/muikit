@@ -54,6 +54,7 @@
 		156FD7660F7A25E500F83283 /* L0UUID.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1559B5C50F7987F6005E4362 /* L0UUID.h */; };
 		156FD7700F7A260F00F83283 /* L0SolicitReview.strings in Resources */ = {isa = PBXBuildFile; fileRef = 154B021F0F7816FD0082109B /* L0SolicitReview.strings */; };
 		156FD7710F7A260F00F83283 /* L0SolicitReview.alert in Resources */ = {isa = PBXBuildFile; fileRef = 154B02160F7816910082109B /* L0SolicitReview.alert */; };
+		156FD7EF0F7A2C2C00F83283 /* MuiKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15B446660F79028E00DA63E9 /* MuiKit.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,21 +62,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 154B01DE0F7815560082109B /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 154B01EF0F78156D0082109B /* MuiKit (Library) */;
+			remoteGlobalIDString = 154B01EF0F78156D0082109B;
 			remoteInfo = "MuiKit (Library)";
 		};
 		156FD7770F7A261F00F83283 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 154B01DE0F7815560082109B /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 156FD75C0F7A259A00F83283 /* MuiKit (Headers) */;
+			remoteGlobalIDString = 156FD75C0F7A259A00F83283;
 			remoteInfo = "MuiKit (Headers)";
 		};
 		156FD7790F7A261F00F83283 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 154B01DE0F7815560082109B /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 156FD76A0F7A25F900F83283 /* MuiKit (Resources) */;
+			remoteGlobalIDString = 156FD76A0F7A25F900F83283;
 			remoteInfo = "MuiKit (Resources)";
 		};
 /* End PBXContainerItemProxy section */
@@ -84,9 +85,10 @@
 		156FD75B0F7A259A00F83283 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "MuiKit-Headers";
+			dstPath = MuiKit;
 			dstSubfolderSpec = 16;
 			files = (
+				156FD7EF0F7A2C2C00F83283 /* MuiKit.h in CopyFiles */,
 				156FD7610F7A25E500F83283 /* L0ExternalURLOpeningDetection.h in CopyFiles */,
 				156FD7620F7A25E500F83283 /* L0SolicitReviewController.h in CopyFiles */,
 				156FD7630F7A25E500F83283 /* UIImage+L0RenderingAdditions.h in CopyFiles */,
@@ -385,6 +387,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 154B01F60F7815CA0082109B /* MuiKit.xcconfig */;
 			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)";
 				GCC_PREFIX_HEADER = "$(INFINITELABS_TOOLS)/Common/iPhone/UIKit.pch";
 			};
 			name = Debug;
@@ -393,6 +397,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 154B01F60F7815CA0082109B /* MuiKit.xcconfig */;
 			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)";
 				GCC_PREFIX_HEADER = "$(INFINITELABS_TOOLS)/Common/iPhone/UIKit.pch";
 			};
 			name = Release;
@@ -401,6 +407,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -413,6 +421,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -425,6 +435,8 @@
 		156FD75D0F7A259A00F83283 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/Headers";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/Headers";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -447,6 +459,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -473,6 +487,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
