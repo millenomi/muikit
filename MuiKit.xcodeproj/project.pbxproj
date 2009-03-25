@@ -37,10 +37,10 @@
 		154B02050F7816210082109B /* L0ExternalURLOpeningDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B01FB0F7816210082109B /* L0ExternalURLOpeningDetection.m */; };
 		154B02060F7816210082109B /* L0SolicitReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B01FC0F7816210082109B /* L0SolicitReviewController.m */; };
 		154B02070F7816210082109B /* L0ExternalURLOpeningDetection.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B01FD0F7816210082109B /* L0ExternalURLOpeningDetection.h */; };
-		154B02080F7816210082109B /* UIImage_L0RenderingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B01FE0F7816210082109B /* UIImage_L0RenderingAdditions.m */; };
+		154B02080F7816210082109B /* UIImage+L0RenderingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B01FE0F7816210082109B /* UIImage+L0RenderingAdditions.m */; };
 		154B02090F7816210082109B /* L0SolicitReviewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B01FF0F7816210082109B /* L0SolicitReviewController.h */; };
 		154B020A0F7816210082109B /* UIAlertView+L0Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B02000F7816210082109B /* UIAlertView+L0Alert.m */; };
-		154B020B0F7816210082109B /* UIImage_L0RenderingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B02010F7816210082109B /* UIImage_L0RenderingAdditions.h */; };
+		154B020B0F7816210082109B /* UIImage+L0RenderingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B02010F7816210082109B /* UIImage+L0RenderingAdditions.h */; };
 		154B020C0F7816210082109B /* L0DraggableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B02020F7816210082109B /* L0DraggableView.m */; };
 		154B020D0F7816210082109B /* L0DraggableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B02030F7816210082109B /* L0DraggableView.h */; };
 		154B020E0F7816210082109B /* UIAlertView+L0Alert.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B02040F7816210082109B /* UIAlertView+L0Alert.h */; };
@@ -48,7 +48,7 @@
 		1559B5C70F7987F6005E4362 /* L0UUID.h in Headers */ = {isa = PBXBuildFile; fileRef = 1559B5C50F7987F6005E4362 /* L0UUID.h */; };
 		156FD7610F7A25E500F83283 /* L0ExternalURLOpeningDetection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 154B01FD0F7816210082109B /* L0ExternalURLOpeningDetection.h */; };
 		156FD7620F7A25E500F83283 /* L0SolicitReviewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 154B01FF0F7816210082109B /* L0SolicitReviewController.h */; };
-		156FD7630F7A25E500F83283 /* UIImage_L0RenderingAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 154B02010F7816210082109B /* UIImage_L0RenderingAdditions.h */; };
+		156FD7630F7A25E500F83283 /* UIImage+L0RenderingAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 154B02010F7816210082109B /* UIImage+L0RenderingAdditions.h */; };
 		156FD7640F7A25E500F83283 /* L0DraggableView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 154B02030F7816210082109B /* L0DraggableView.h */; };
 		156FD7650F7A25E500F83283 /* UIAlertView+L0Alert.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 154B02040F7816210082109B /* UIAlertView+L0Alert.h */; };
 		156FD7660F7A25E500F83283 /* L0UUID.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1559B5C50F7987F6005E4362 /* L0UUID.h */; };
@@ -89,7 +89,7 @@
 			files = (
 				156FD7610F7A25E500F83283 /* L0ExternalURLOpeningDetection.h in CopyFiles */,
 				156FD7620F7A25E500F83283 /* L0SolicitReviewController.h in CopyFiles */,
-				156FD7630F7A25E500F83283 /* UIImage_L0RenderingAdditions.h in CopyFiles */,
+				156FD7630F7A25E500F83283 /* UIImage+L0RenderingAdditions.h in CopyFiles */,
 				156FD7640F7A25E500F83283 /* L0DraggableView.h in CopyFiles */,
 				156FD7650F7A25E500F83283 /* UIAlertView+L0Alert.h in CopyFiles */,
 				156FD7660F7A25E500F83283 /* L0UUID.h in CopyFiles */,
@@ -104,10 +104,10 @@
 		154B01FB0F7816210082109B /* L0ExternalURLOpeningDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0ExternalURLOpeningDetection.m; sourceTree = "<group>"; };
 		154B01FC0F7816210082109B /* L0SolicitReviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0SolicitReviewController.m; sourceTree = "<group>"; };
 		154B01FD0F7816210082109B /* L0ExternalURLOpeningDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0ExternalURLOpeningDetection.h; sourceTree = "<group>"; };
-		154B01FE0F7816210082109B /* UIImage_L0RenderingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImage_L0RenderingAdditions.m; sourceTree = "<group>"; };
+		154B01FE0F7816210082109B /* UIImage+L0RenderingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+L0RenderingAdditions.m"; sourceTree = "<group>"; };
 		154B01FF0F7816210082109B /* L0SolicitReviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0SolicitReviewController.h; sourceTree = "<group>"; };
 		154B02000F7816210082109B /* UIAlertView+L0Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+L0Alert.m"; sourceTree = "<group>"; };
-		154B02010F7816210082109B /* UIImage_L0RenderingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImage_L0RenderingAdditions.h; sourceTree = "<group>"; };
+		154B02010F7816210082109B /* UIImage+L0RenderingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+L0RenderingAdditions.h"; sourceTree = "<group>"; };
 		154B02020F7816210082109B /* L0DraggableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0DraggableView.m; sourceTree = "<group>"; tabWidth = 0; };
 		154B02030F7816210082109B /* L0DraggableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0DraggableView.h; sourceTree = "<group>"; tabWidth = 0; };
 		154B02040F7816210082109B /* UIAlertView+L0Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+L0Alert.h"; sourceTree = "<group>"; };
@@ -189,8 +189,8 @@
 		154B02130F7816610082109B /* Image Rendering */ = {
 			isa = PBXGroup;
 			children = (
-				154B02010F7816210082109B /* UIImage_L0RenderingAdditions.h */,
-				154B01FE0F7816210082109B /* UIImage_L0RenderingAdditions.m */,
+				154B02010F7816210082109B /* UIImage+L0RenderingAdditions.h */,
+				154B01FE0F7816210082109B /* UIImage+L0RenderingAdditions.m */,
 			);
 			name = "Image Rendering";
 			sourceTree = "<group>";
@@ -250,7 +250,7 @@
 			files = (
 				154B02070F7816210082109B /* L0ExternalURLOpeningDetection.h in Headers */,
 				154B02090F7816210082109B /* L0SolicitReviewController.h in Headers */,
-				154B020B0F7816210082109B /* UIImage_L0RenderingAdditions.h in Headers */,
+				154B020B0F7816210082109B /* UIImage+L0RenderingAdditions.h in Headers */,
 				154B020D0F7816210082109B /* L0DraggableView.h in Headers */,
 				154B020E0F7816210082109B /* UIAlertView+L0Alert.h in Headers */,
 				1559B5C70F7987F6005E4362 /* L0UUID.h in Headers */,
@@ -341,7 +341,7 @@
 			files = (
 				154B02050F7816210082109B /* L0ExternalURLOpeningDetection.m in Sources */,
 				154B02060F7816210082109B /* L0SolicitReviewController.m in Sources */,
-				154B02080F7816210082109B /* UIImage_L0RenderingAdditions.m in Sources */,
+				154B02080F7816210082109B /* UIImage+L0RenderingAdditions.m in Sources */,
 				154B020A0F7816210082109B /* UIAlertView+L0Alert.m in Sources */,
 				154B020C0F7816210082109B /* L0DraggableView.m in Sources */,
 				1559B5C60F7987F6005E4362 /* L0UUID.m in Sources */,

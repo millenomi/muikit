@@ -6,7 +6,7 @@
 //  Copyright Emanuele Vulcano 2008. All rights reserved.
 //
 
-#import "UIImage_L0RenderingAdditions.h"
+#import "UIImage+L0RenderingAdditions.h"
 
 // Original code from badpirate at
 // http://blog.logichigh.com/2008/06/05/uiimage-fix/
