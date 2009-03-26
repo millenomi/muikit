@@ -10,6 +10,12 @@ That's mostly it. It's underdocumented and overhyped. It's all under a new-BSD-s
 
 The steps are as follows:
 
+ - **Before you start, set up the ∞labs build tools.**
+   * Clone the repository at [http://github.com/millenomi/infinitelabs-build-tools/](http://github.com/millenomi/infinitelabs-build-tools/);
+   * Set it up in Xcode by going into **Xcode &gt; Preferences &gt; Source Trees** and adding a new tree with the following data:
+     - setting name: `INFINITELABS_TOOLS`
+     - display name: "∞labs build tools" (or anything descriptive that you like)
+     - path: *the full path to the repository clone above.*
  - Check out the source in a directory and make sure it builds.
  - Set up an interproject dependency between your new project and `MuiKit.xcodeproj`'s `MuiKit` target:
    * Drag `MuiKit.xcodeproj` into your project.
