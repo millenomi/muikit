@@ -55,6 +55,8 @@
 		156FD7700F7A260F00F83283 /* L0SolicitReview.strings in Resources */ = {isa = PBXBuildFile; fileRef = 154B021F0F7816FD0082109B /* L0SolicitReview.strings */; };
 		156FD7710F7A260F00F83283 /* L0SolicitReview.alert in Resources */ = {isa = PBXBuildFile; fileRef = 154B02160F7816910082109B /* L0SolicitReview.alert */; };
 		156FD7EF0F7A2C2C00F83283 /* MuiKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15B446660F79028E00DA63E9 /* MuiKit.h */; };
+		1578916D0F7CE8F6006FF0C0 /* L0FlipViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1578916B0F7CE8F5006FF0C0 /* L0FlipViewController.h */; };
+		1578916E0F7CE8F6006FF0C0 /* L0FlipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1578916C0F7CE8F6006FF0C0 /* L0FlipViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +124,8 @@
 		1559B5C50F7987F6005E4362 /* L0UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0UUID.h; sourceTree = "<group>"; };
 		156FD76B0F7A25F900F83283 /* MuiKit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuiKit.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		156FD76C0F7A25F900F83283 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1578916B0F7CE8F5006FF0C0 /* L0FlipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0FlipViewController.h; sourceTree = "<group>"; };
+		1578916C0F7CE8F6006FF0C0 /* L0FlipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0FlipViewController.m; sourceTree = "<group>"; };
 		15B446660F79028E00DA63E9 /* MuiKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MuiKit.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +162,7 @@
 		154B02100F78163C0082109B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				157891700F7CE909006FF0C0 /* Flip View Controller */,
 				1559B5C10F7987DE005E4362 /* UUIDs */,
 				154B02110F7816430082109B /* External URL Opening Detection */,
 				154B02120F7816510082109B /* Soliciting Reviews */,
@@ -234,6 +239,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		157891700F7CE909006FF0C0 /* Flip View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1578916B0F7CE8F5006FF0C0 /* L0FlipViewController.h */,
+				1578916C0F7CE8F6006FF0C0 /* L0FlipViewController.m */,
+			);
+			name = "Flip View Controller";
+			sourceTree = "<group>";
+		};
 		15B4459F0F78FAD200DA63E9 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +270,7 @@
 				154B020D0F7816210082109B /* L0DraggableView.h in Headers */,
 				154B020E0F7816210082109B /* UIAlertView+L0Alert.h in Headers */,
 				1559B5C70F7987F6005E4362 /* L0UUID.h in Headers */,
+				1578916D0F7CE8F6006FF0C0 /* L0FlipViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +362,7 @@
 				154B020A0F7816210082109B /* UIAlertView+L0Alert.m in Sources */,
 				154B020C0F7816210082109B /* L0DraggableView.m in Sources */,
 				1559B5C60F7987F6005E4362 /* L0UUID.m in Sources */,
+				1578916E0F7CE8F6006FF0C0 /* L0FlipViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
