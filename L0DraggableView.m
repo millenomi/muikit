@@ -8,9 +8,6 @@
 
 #import "L0DraggableView.h"
 
-#pragma mark -
-#pragma mark L0DraggableViewSlideContext definitions
-
 static inline CGFloat L0ClampToMaximumAbsolute(CGFloat value, CGFloat maximumAbs) {
 	maximumAbs = ABS(maximumAbs);
 	
@@ -187,9 +184,11 @@ static inline BOOL L0VectorHasPointWithinAbsolute(CGPoint vector, CGFloat rangeA
 	[UIView setAnimationDuration:movementTime * timeScale];
 	
 	if (delegate) {
+		L0Log(@"delegate is %@, so setting up animation delegate/stop selector for slide.", delegate);
 		[UIView setAnimationDelegate:self];
 		[UIView setAnimationDidStopSelector:@selector(_slideAnimation:didEndByFinishing:context:)];
 	}
+	L0LogIf(!delegate, @"no delegate set");
 	
 	CGPoint center = self.center;
 	center.x += delta.x;
@@ -203,7 +202,7 @@ static inline BOOL L0VectorHasPointWithinAbsolute(CGPoint vector, CGFloat rangeA
 	
 	if (delegate && [delegate respondsToSelector:@selector(draggableView:shouldMoveFromPoint:toAttractionPoint:)]) {
 		CGPoint to;
-		BOOL shouldMove = [delegate draggableView:self shouldMoveFromPoint:self.center toAttractionPoint:&to];
+		BOOL shouldMove = [delegate draggableView:self shouldMoveFromPoint:center toAttractionPoint:&to];
 		
 		if (shouldMove) {
 			// TODO two-part "curve" animation for long attractions
@@ -218,12 +217,16 @@ static inline BOOL L0VectorHasPointWithinAbsolute(CGPoint vector, CGFloat rangeA
 
 - (void) _slideAnimation:(NSString*) name didEndByFinishing:(BOOL) finished context:(void*) nothing;
 {
+	L0Log(@"%@, finished = %d", self, finished);
+	
 	if (delegate && [delegate respondsToSelector:@selector(draggableView:didEndInertialSlideByFinishing:)])
 		[delegate draggableView:self didEndInertialSlideByFinishing:finished];
 }
 
 - (void) _attractionAnimation:(NSString*) name didEndByFinishing:(BOOL) finished context:(void*) nothing;
 {
+	L0Log(@"%@, finished = %d", self, finished);
+	
 	if (delegate && [delegate respondsToSelector:@selector(draggableView:didEndAttractionByFinishing:)])
 		[delegate draggableView:self didEndAttractionByFinishing:finished];
 }
