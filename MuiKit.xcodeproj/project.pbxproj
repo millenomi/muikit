@@ -44,6 +44,7 @@
 		154B020C0F7816210082109B /* L0DraggableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B02020F7816210082109B /* L0DraggableView.m */; };
 		154B020D0F7816210082109B /* L0DraggableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B02030F7816210082109B /* L0DraggableView.h */; };
 		154B020E0F7816210082109B /* UIAlertView+L0Alert.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B02040F7816210082109B /* UIAlertView+L0Alert.h */; };
+		15518FE40F8255950055BCEC /* L0FlipViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1578916B0F7CE8F5006FF0C0 /* L0FlipViewController.h */; };
 		1559B5C60F7987F6005E4362 /* L0UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559B5C40F7987F6005E4362 /* L0UUID.m */; };
 		1559B5C70F7987F6005E4362 /* L0UUID.h in Headers */ = {isa = PBXBuildFile; fileRef = 1559B5C50F7987F6005E4362 /* L0UUID.h */; };
 		156FD7610F7A25E500F83283 /* L0ExternalURLOpeningDetection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 154B01FD0F7816210082109B /* L0ExternalURLOpeningDetection.h */; };
@@ -97,6 +98,7 @@
 				156FD7640F7A25E500F83283 /* L0DraggableView.h in CopyFiles */,
 				156FD7650F7A25E500F83283 /* UIAlertView+L0Alert.h in CopyFiles */,
 				156FD7660F7A25E500F83283 /* L0UUID.h in CopyFiles */,
+				15518FE40F8255950055BCEC /* L0FlipViewController.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +114,7 @@
 		154B01FF0F7816210082109B /* L0SolicitReviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0SolicitReviewController.h; sourceTree = "<group>"; };
 		154B02000F7816210082109B /* UIAlertView+L0Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+L0Alert.m"; sourceTree = "<group>"; };
 		154B02010F7816210082109B /* UIImage+L0RenderingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+L0RenderingAdditions.h"; sourceTree = "<group>"; };
-		154B02020F7816210082109B /* L0DraggableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0DraggableView.m; sourceTree = "<group>"; tabWidth = 0; };
+		154B02020F7816210082109B /* L0DraggableView.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = L0DraggableView.m; sourceTree = "<group>"; tabWidth = 4; };
 		154B02030F7816210082109B /* L0DraggableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0DraggableView.h; sourceTree = "<group>"; tabWidth = 0; };
 		154B02040F7816210082109B /* UIAlertView+L0Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+L0Alert.h"; sourceTree = "<group>"; };
 		154B02160F7816910082109B /* L0SolicitReview.alert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = L0SolicitReview.alert; sourceTree = "<group>"; };
