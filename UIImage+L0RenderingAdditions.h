@@ -22,6 +22,7 @@
  * the given size parameter.
  * 
  */
-- (UIImage*) imageByRenderingRotationAndScalingWithSize:(CGFloat) size;
+- (UIImage*) imageByRenderingRotationAndScalingWithMaximumSide:(CGFloat) size;
+- (UIImage*) imageByRenderingRotation;
 
 @end

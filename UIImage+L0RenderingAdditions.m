@@ -117,9 +117,16 @@ static UIImage* L0ScaleAndRotateImage(UIImage* image, CGFloat maxResolution)
 
 @implementation UIImage (L0RenderingAdditions)
 
-- (UIImage*) imageByRenderingRotationAndScalingWithSize:(CGFloat) size;
+- (UIImage*) imageByRenderingRotationAndScalingWithMaximumSide:(CGFloat) size;
 {
 	return L0ScaleAndRotateImage(self, size);
+}
+
+- (UIImage*) imageByRenderingRotation;
+{
+	CGSize size = self.size;
+	CGFloat maxSide = MAX(size.height, size.width);
+	return [self imageByRenderingRotationAndScalingWithMaximumSide:maxSide];
 }
 
 @end
