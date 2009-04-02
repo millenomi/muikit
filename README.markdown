@@ -22,10 +22,12 @@ The steps are as follows:
    * Select your target and choose File > Get Info.
    * Add the target named just `MuiKit` to the dependencies list (by clicking "+" under the list in the top part of the General pane of the window). *(There are other targets that start with MuiKit, eg `MuiKit (Resources)` — ignore them, they're built as part of the target you just set a dependency on. They're "implementation details" if you will :D)*
    * Keep the Get Info window open, because you need it to…
- - Set header search paths to include the headers in `{MuiKit directory}/Build/Headers`:
+ - Set header search paths to include the headers in `{MuiKit directory}/Build/Headers`, and linker options to include Objective-C categories:
    * In the Get Info window from the previous step, switch to the Build pane.
    * Look for the "Header Search Paths" setting.
    * Add the following path to the setting `{MuiKit's source directory}/Build/Headers`, non recursive.
+   * Look for the "Other Linker Flags" setting.
+   * Add the `-ObjC` flag to the end of the setting.
  - Add resources and libraries to the application target:
    * Go back to the project window.
    * Locate `MuiKit.xcodeproj` and expand it with the arrow on its right.
