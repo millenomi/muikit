@@ -56,11 +56,11 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 		if (!go) return;
 	}
 	
-	_dragging = YES;
-	_lastLocation = [[touches anyObject] locationInView:self.superview];
-	_lastSpeedRecordingLocation = _lastLocation;
-	_dragStartDate = [NSDate new];
-	_lastSpeedRecordingIntervalSinceStartOfDrag = 0;
+	dragging = YES;
+	lastLocation = [[touches anyObject] locationInView:self.superview];
+	lastSpeedRecordingLocation = lastLocation;
+	dragStartDate = [NSDate new];
+	lastSpeedRecordingIntervalSinceStartOfDrag = 0;
 	
 	self.center = self.center; // stops animation.
 	
@@ -72,22 +72,22 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 
 - (void) _recordSpeed;
 {
-	_lastSpeedRecordingLocation = _lastLocation;
-	_lastSpeedRecordingIntervalSinceStartOfDrag = -[_dragStartDate timeIntervalSinceNow];
+	lastSpeedRecordingLocation = lastLocation;
+	lastSpeedRecordingIntervalSinceStartOfDrag = -[dragStartDate timeIntervalSinceNow];
 	
-	L0Log(@"speed = %@, interval since start = %f", NSStringFromCGPoint(_lastSpeedRecordingLocation), _lastSpeedRecordingIntervalSinceStartOfDrag);
+	L0Log(@"speed = %@, interval since start = %f", NSStringFromCGPoint(lastSpeedRecordingLocation), lastSpeedRecordingIntervalSinceStartOfDrag);
 	
 	[self performSelector:@selector(_recordSpeed) withObject:nil afterDelay:0.2];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
 {
-	if (!_dragging) return;
+	if (!dragging) return;
 	
 	CGPoint newLocation = [[touches anyObject] locationInView:self.superview];
 	
-	CGFloat deltaX = newLocation.x - _lastLocation.x;
-	CGFloat deltaY = newLocation.y - _lastLocation.y;
+	CGFloat deltaX = newLocation.x - lastLocation.x;
+	CGFloat deltaY = newLocation.y - lastLocation.y;
 	
 	CGPoint center = self.center;
 	center.x += deltaX;
@@ -95,10 +95,10 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 	
 	self.center = center;
 	
-	if (delegate && _delegateImplementsDidDragToPoint)
+	if (delegate && delegateImplementsDidDragToPoint)
 		[delegate draggableView:self didDragToPoint:center];
 	
-	_lastLocation = newLocation;
+	lastLocation = newLocation;
 }
 
 #define kL0MinimumMovementSpeedIn100MSForSlide 7.0
@@ -110,17 +110,17 @@ static inline BOOL L0VectorHasPointWithinAbsolute(CGPoint vector, CGFloat rangeA
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 {
-	_dragging = NO;
+	dragging = NO;
 	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_recordSpeed) object:nil];
 	
 	NSAssert(self.superview != nil, @"No events should be received without a superview.");
 	CGPoint here = [[touches anyObject] locationInView:self.superview];
 	
 	CGPoint movementVector;
-	movementVector.x = here.x - _lastSpeedRecordingLocation.x;
-	movementVector.y = here.y - _lastSpeedRecordingLocation.y;
+	movementVector.x = here.x - lastSpeedRecordingLocation.x;
+	movementVector.y = here.y - lastSpeedRecordingLocation.y;
 	
-	NSTimeInterval movementTime = (-[_dragStartDate timeIntervalSinceNow]) - _lastSpeedRecordingIntervalSinceStartOfDrag;
+	NSTimeInterval movementTime = (-[dragStartDate timeIntervalSinceNow]) - lastSpeedRecordingIntervalSinceStartOfDrag;
 	
 	CGPoint speedPointsPer100MS;
 	speedPointsPer100MS.x = (movementVector.x / movementTime) * 0.1;
@@ -233,8 +233,8 @@ static inline BOOL L0VectorHasPointWithinAbsolute(CGPoint vector, CGFloat rangeA
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
 {
-	if (_dragging) {
-		_dragging = NO;
+	if (dragging) {
+		dragging = NO;
 		if (delegate && [delegate respondsToSelector:@selector(draggableViewDidEndDragging:continuesWithSlide:)])
 			[delegate draggableViewDidEndDragging:self continuesWithSlide:NO];
 	}
@@ -244,7 +244,7 @@ static inline BOOL L0VectorHasPointWithinAbsolute(CGPoint vector, CGFloat rangeA
 - (void) setDelegate:(id <L0DraggableViewDelegate>) d;
 {
 	delegate = d;
-	_delegateImplementsDidDragToPoint = [d respondsToSelector:@selector(draggableView:didDragToPoint:)];
+	delegateImplementsDidDragToPoint = [d respondsToSelector:@selector(draggableView:didDragToPoint:)];
 }
 
 @end

@@ -11,15 +11,15 @@
 @protocol L0DraggableViewDelegate;
 
 @interface L0DraggableView : UIView {
-	BOOL _dragging;
-	CGPoint _lastLocation;
+	BOOL dragging;
+	CGPoint lastLocation;
 	
-	NSDate* _dragStartDate;
-	NSTimeInterval _lastSpeedRecordingIntervalSinceStartOfDrag;
-	CGPoint _lastSpeedRecordingLocation;
+	NSDate* dragStartDate;
+	NSTimeInterval lastSpeedRecordingIntervalSinceStartOfDrag;
+	CGPoint lastSpeedRecordingLocation;
 	
 	id <L0DraggableViewDelegate> delegate;
-	BOOL _delegateImplementsDidDragToPoint;
+	BOOL delegateImplementsDidDragToPoint;
 }
 
 @property(assign) id <L0DraggableViewDelegate> delegate;
