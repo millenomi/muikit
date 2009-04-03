@@ -89,6 +89,8 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 
 - (void) _recordSpeed;
 {
+	if (!dragging) return;
+	
 	lastSpeedRecordingLocation = lastLocation;
 	lastSpeedRecordingIntervalSinceStartOfDrag = -[dragStartDate timeIntervalSinceNow];
 	
@@ -130,6 +132,7 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 	[self _endDraggingWithTouch:[touches anyObject]];
 }
 
+// If t == nil, we stop where we are and never continue with a slide or an attraction.
 - (void) _endDraggingWithTouch:(UITouch*) t;
 {
 	if (!dragging) return;
@@ -137,29 +140,35 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 	dragging = NO;
 	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_recordSpeed) object:nil];
 	
-	NSAssert(self.superview != nil, @"No events should be received without a superview.");
-	CGPoint here = [t locationInView:self.superview];
-	
-	CGPoint movementVector;
-	movementVector.x = here.x - lastSpeedRecordingLocation.x;
-	movementVector.y = here.y - lastSpeedRecordingLocation.y;
-	
 	NSTimeInterval movementTime = (-[dragStartDate timeIntervalSinceNow]) - lastSpeedRecordingIntervalSinceStartOfDrag;
 	[dragStartDate release];
 	dragStartDate = nil;
 	
-	CGPoint speedPointsPer100MS;
-	speedPointsPer100MS.x = (movementVector.x / movementTime) * 0.1;
-	speedPointsPer100MS.y = (movementVector.y / movementTime) * 0.1;
+	BOOL continuesWithSlide = NO;
 	
-	BOOL continuesWithSlide = !L0VectorHasPointWithinAbsolute(speedPointsPer100MS, kL0DraggableViewMinimumMovementSpeedIn100MSForSlide);
+	if (t) {
+		NSAssert(self.superview != nil, @"No events should be received without a superview.");
+		CGPoint here = [t locationInView:self.superview];
+		
+		CGPoint movementVector;
+		movementVector.x = here.x - lastSpeedRecordingLocation.x;
+		movementVector.y = here.y - lastSpeedRecordingLocation.y;
+		
+		CGPoint speedPointsPer100MS;
+		speedPointsPer100MS.x = (movementVector.x / movementTime) * 0.1;
+		speedPointsPer100MS.y = (movementVector.y / movementTime) * 0.1;
+		
+		continuesWithSlide = !L0VectorHasPointWithinAbsolute(speedPointsPer100MS, kL0DraggableViewMinimumMovementSpeedIn100MSForSlide);		
+	}
 	
 	if (delegate && [delegate respondsToSelector:@selector(draggableViewDidEndDragging:continuesWithSlide:)])
 		[delegate draggableViewDidEndDragging:self continuesWithSlide:continuesWithSlide];
 	
 	if (!continuesWithSlide) {
 		// Determine attraction.
-		if (delegate && [delegate respondsToSelector:@selector(draggableView:shouldMoveFromPoint:toAttractionPoint:)]) {
+		// If t == nil, then we have been canceled and we never perform attraction
+		// in this case.
+		if (!t && delegate && [delegate respondsToSelector:@selector(draggableView:shouldMoveFromPoint:toAttractionPoint:)]) {
 			
 			CGPoint to;
 			BOOL shouldMove = [delegate draggableView:self shouldMoveFromPoint:self.center toAttractionPoint:&to];
@@ -259,11 +268,7 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
 {
-	if (dragging) {
-		dragging = NO;
-		if (delegate && [delegate respondsToSelector:@selector(draggableViewDidEndDragging:continuesWithSlide:)])
-			[delegate draggableViewDidEndDragging:self continuesWithSlide:NO];
-	}
+	[self _endDraggingWithTouch:nil]; // nil == canceled -- no attraction, no slide
 }
 
 @synthesize delegate;
