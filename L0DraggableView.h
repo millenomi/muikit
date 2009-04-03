@@ -10,6 +10,33 @@
 
 @protocol L0DraggableViewDelegate;
 
+/*
+ A draggable view is a view that the user can manipulate by (huh) dragging.
+ It features the following:
+
+ - Dragging (duh): the user can move the view by touching it and moving the touch.
+ This works whenever the touch reaches the view, whether it's done directly upon
+ it or through subviews that have userInteractionEnabled set to NO.
+
+ - Inertial slide: If the user stops dragging the view with a certain speed, the
+ draggable view will perform an "inertial slide", similar to UIScrollView's slowdown,
+ by continuing in the direction it was "flicked" towards.
+ 
+ - Attraction: The application can change the final point of arrival for a view
+ after a drag by providing an "attraction point". Attractions integrate in the movement
+ animations and do not feel awkward to the user.
+ 
+ - Press + Press and Hold: In a way similar to UIControls, draggable views can detect
+ presses, a gesture that works similarly to buttons inside scroll views
+ (touch up inside the view without initiating a drag). Additionally, draggable views can
+ detect 'press and hold' gestures, which happen when the user keeps the finger down on
+ the view without dragging it. The delegate can optionally prevent the view from being
+ dragged after a press and hold, for example because it wants to use the gesture for
+ displaying e.g. a menu of options.
+ 
+ To use, create one, set a delegate, and off you go.
+*/
+
 @interface L0DraggableView : UIView {
 	BOOL pressingWithoutDrag;
 	CGPoint pressLocation;
@@ -45,7 +72,11 @@
 // Called when the view is pressed and held (touch down + no touch up in a second without
 // dragging). Return YES to allow the drag to start anyway, NO to prevent dragging
 // until after the next touch up.
-// If not implemented, default is YES.
+// If not implemented, default is YES (allow dragging).
+// Note that after this method is called, two things can
+// happen: either the user drags the view away (thus calling the 'DRAGGING' methods below)
+// or he ends the touching without moving, causing draggableViewDidEndPressAndHold: to
+// be called instead.
 - (BOOL) draggableViewShouldBeginDraggingAfterPressAndHold:(L0DraggableView*) view;
 
 // Called when press-and-hold ends. Only called if the view was NOT dragged after p&h.
