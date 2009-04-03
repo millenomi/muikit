@@ -64,7 +64,7 @@
 // - TODO: If the user ends the drag with a slide, <strike>and the slide's endpoint is one lenght or less away from the attraction point</strike>, the slide will move to the attraction point rather than the endpoint.
 // Currently, all interactions between an attraction point and a slide cause the attraction point to replace the slide's endpoint (so the above IS implemented, just not for some slides -- for all of them.)
 // TODO: - If the user ends the drag with a slide and the endpoint is more than one length away from the attraction point, it will slide towards the endpoint for about half of the way, then curve towards the attraction point.
-- (BOOL) draggableView:(L0DraggableView*) view shouldMoveFromPoint:(CGPoint) start toAttractionPoint:(CGPoint*) outPoint;
+- (BOOL) draggableView:(L0DraggableView*) view shouldMoveFromPoint:(CGPoint) currentEndpoint toAttractionPoint:(CGPoint*) outPoint;
 
 // Called as an attraction point animation ends.
 // If finished == NO, the attraction was interrupted (eg because the user started dragging
