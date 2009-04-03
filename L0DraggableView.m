@@ -88,6 +88,8 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 {
 	if (pressingWithoutDrag || dragging) return;
 	
+	L0Log(@"%@", touch);
+	
 	pressingWithoutDrag = YES;
 	pressLocation = [t locationInView:self.superview];
 	[self performSelector:@selector(_detectPressAndHold) withObject:nil afterDelay:kL0DraggableViewPressAndHoldDelay];
@@ -95,6 +97,8 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 
 - (void) _endPressing;
 {
+	L0Log(@"Finished press");
+	
 	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_detectPressAndHold) object:nil];
 	pressingWithoutDrag = NO;
 }
@@ -104,6 +108,8 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 {
 	if (!pressingWithoutDrag || dragging) return;
 	
+	L0Log(@"Detected press and hold");
+	
 	// TODO warn delegate of press and hold
 	draggingCanceledUntilTouchUp = YES; // = [delegate draggingViewCanDragAfterPressAndHold:self];
 	[self _endPressing];
@@ -112,6 +118,8 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 - (void) _detectPressUp;
 {
 	if (!pressingWithoutDrag || dragging) return;
+	
+	L0Log(@"Detected press up");
 	
 	// TODO warn delegate of press up
 	[self _endPressing];
@@ -126,6 +134,8 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 	here.x -= pressLocation.x;
 	here.y -= pressLocation.y;
 	
+	L0Log(@"Will check with delta: %@", NSStringFromCGPoint(here));
+	
 	if (!L0VectorHasPointWithinAbsolute(here, kL0DraggableViewPressTolerance)) {
 		[self _endPressing];
 		return YES;
@@ -139,6 +149,8 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 - (void) _beginDraggingWithTouch:(UITouch*) t;
 {
 	if (dragging) return;
+	
+	L0Log(@"%@", t);
 	
 	if (delegate && [delegate respondsToSelector:@selector(draggableViewShouldBeginDragging:)]) {
 		BOOL go = [delegate draggableViewShouldBeginDragging:self];
@@ -175,6 +187,8 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 {
 	if (!dragging) return;
 	
+	L0Log(@"%@", t);
+	
 	CGPoint newLocation = [t locationInView:self.superview];
 	
 	CGFloat deltaX = newLocation.x - lastLocation.x;
@@ -198,6 +212,8 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 - (void) _endDraggingWithTouch:(UITouch*) t;
 {
 	if (!dragging) return;
+
+	L0Log(@"%@", t);
 	
 	dragging = NO;
 	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_recordSpeed) object:nil];
