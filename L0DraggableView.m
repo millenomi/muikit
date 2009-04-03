@@ -97,6 +97,13 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 		return;
 	}
 	
+	if (notifyOfPressAndHoldEndOnTouchUp) {
+		if (delegate && [delegate respondsToSelector:@selector(draggableViewDidEndPressAndHold:)])
+			[delegate draggableViewDidEndPressAndHold:self];
+		
+		notifyOfPressAndHoldEndOnTouchUp = NO;
+	}
+	
 	if (!draggingCanceledUntilTouchUp)
 		[self _endDraggingWithTouch:[touches anyObject]];
 	
@@ -107,6 +114,13 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 {
 	if (!draggingCanceledUntilTouchUp)
 		[self _endDraggingWithTouch:nil]; // nil == canceled -- no attraction, no slide
+	
+	if (notifyOfPressAndHoldEndOnTouchUp) {
+		if (delegate && [delegate respondsToSelector:@selector(draggableViewDidEndPressAndHold:)])
+			[delegate draggableViewDidEndPressAndHold:self];
+		
+		notifyOfPressAndHoldEndOnTouchUp = NO;
+	}
 	
 	draggingCanceledUntilTouchUp = NO;
 }
@@ -145,6 +159,8 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 		
 		draggingCanceledUntilTouchUp = ![delegate draggableViewShouldBeginDraggingAfterPressAndHold:self];
 	}
+	
+	notifyOfPressAndHoldEndOnTouchUp = YES;
 
 	L0Log(@"Detected press and hold -- will cancel dragging until touch up: %d", draggingCanceledUntilTouchUp);
 	

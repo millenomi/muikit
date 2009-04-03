@@ -14,6 +14,7 @@
 	BOOL pressingWithoutDrag;
 	CGPoint pressLocation;
 	
+	BOOL notifyOfPressAndHoldEndOnTouchUp;
 	BOOL draggingCanceledUntilTouchUp;
 	
 	BOOL dragging;
@@ -46,6 +47,9 @@
 // until after the next touch up.
 // If not implemented, default is YES.
 - (BOOL) draggableViewShouldBeginDraggingAfterPressAndHold:(L0DraggableView*) view;
+
+// Called when press-and-hold ends. Only called if the view was NOT dragged after p&h.
+- (void) draggableViewDidEndPressAndHold:(L0DraggableView*) view;
 
 // ============
 // = DRAGGING =
