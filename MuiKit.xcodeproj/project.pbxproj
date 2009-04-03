@@ -114,7 +114,7 @@
 		154B01FF0F7816210082109B /* L0SolicitReviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0SolicitReviewController.h; sourceTree = "<group>"; };
 		154B02000F7816210082109B /* UIAlertView+L0Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+L0Alert.m"; sourceTree = "<group>"; };
 		154B02010F7816210082109B /* UIImage+L0RenderingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+L0RenderingAdditions.h"; sourceTree = "<group>"; };
-		154B02020F7816210082109B /* L0DraggableView.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = L0DraggableView.m; sourceTree = "<group>"; tabWidth = 4; };
+		154B02020F7816210082109B /* L0DraggableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0DraggableView.m; sourceTree = "<group>"; tabWidth = 4; };
 		154B02030F7816210082109B /* L0DraggableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0DraggableView.h; sourceTree = "<group>"; tabWidth = 4; };
 		154B02040F7816210082109B /* UIAlertView+L0Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+L0Alert.h"; sourceTree = "<group>"; };
 		154B02160F7816910082109B /* L0SolicitReview.alert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = L0SolicitReview.alert; sourceTree = "<group>"; };
