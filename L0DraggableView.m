@@ -140,8 +140,11 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 {
 	if (!pressingWithoutDrag || dragging) return;
 	
-	// TODO warn delegate of press and hold
-	draggingCanceledUntilTouchUp = YES; // = [delegate draggingViewCanDragAfterPressAndHold:self];
+	draggingCanceledUntilTouchUp = NO;
+	if (delegate && [delegate respondsToSelector:@selector(draggableViewShouldBeginDraggingAfterPressAndHold:)]) {
+		
+		draggingCanceledUntilTouchUp = ![delegate draggableViewShouldBeginDraggingAfterPressAndHold:self];
+	}
 
 	L0Log(@"Detected press and hold -- will cancel dragging until touch up: %d", draggingCanceledUntilTouchUp);
 	
@@ -153,6 +156,9 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 	if (!pressingWithoutDrag || dragging) return;
 	
 	L0Log(@"Detected press up");
+	if (delegate && [delegate respondsToSelector:@selector(draggableViewDidPress:)]) {
+		[delegate draggableViewDidPress:self];
+	}
 	
 	// TODO warn delegate of press up
 	[self _endPressing];

@@ -32,8 +32,24 @@
 @end
 
 @protocol L0DraggableViewDelegate <NSObject>
-
 @optional
+
+// ==========================
+// = PRESS + PRESS AND HOLD =
+// ==========================
+
+// Called when the view is pressed (touch down + touch up without dragging within a second).
+- (void) draggableViewDidPress:(L0DraggableView*) view;
+
+// Called when the view is pressed and held (touch down + no touch up in a second without
+// dragging). Return YES to allow the drag to start anyway, NO to prevent dragging
+// until after the next touch up.
+// If not implemented, default is YES.
+- (BOOL) draggableViewShouldBeginDraggingAfterPressAndHold:(L0DraggableView*) view;
+
+// ============
+// = DRAGGING =
+// ============
 
 // Called before dragging starts. NO prevents dragging.
 - (BOOL) draggableViewShouldBeginDragging:(L0DraggableView*) view;
@@ -48,6 +64,10 @@
 // stop moving, as an inertial slide will begin instead.
 - (void) draggableViewDidEndDragging:(L0DraggableView*) view continuesWithSlide:(BOOL) slide;
 
+// ==================
+// = INERTIAL SLIDE =
+// ==================
+
 // Called as the view begins performing an inertial slide to a given point.
 // Call made within the animation block that performs the slide.
 - (void) draggableView:(L0DraggableView*) view willBeginInertialSlideToPoint:(CGPoint) point;
@@ -57,13 +77,16 @@
 // the view again).
 - (void) draggableView:(L0DraggableView*) view didEndInertialSlideByFinishing:(BOOL) finished;
 
+// ==============
+// = ATTRACTION =
+// ==============
+
 // Called to determine if there's an attraction point we want the view to move towards
 // at the end of a drag. "start" is the point where the draggable view would end up with no
 // attraction, either the point where it was left by the user or the slide's endpoint if
 // a flick initiates an inertial slide.
 // Note that interrupting a slide animation (eg by dragging the view again) prevents
 // attraction.
-
 // Works like this:
 // - If the user ends the drag still, it will move towards the attraction point with an ease-in-out curve.
 // - TODO: If the user ends the drag with a slide, <strike>and the slide's endpoint is one lenght or less away from the attraction point</strike>, the slide will move to the attraction point rather than the endpoint.
