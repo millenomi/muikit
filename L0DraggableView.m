@@ -35,6 +35,10 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 
 @interface L0DraggableView ()
 
+- (void) _beginDraggingWithTouch:(UITouch*) t;
+- (void) _moveByDraggingWithTouch:(UITouch*) t;
+- (void) _endDraggingWithTouch:(UITouch*) t;
+
 @end
 
 #pragma mark -
@@ -51,13 +55,18 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 {
+	[self _beginDraggingWithTouch:[touches anyObject]];
+}
+
+- (void) _beginDraggingWithTouch:(UITouch*) t;
+{
 	if (delegate && [delegate respondsToSelector:@selector(draggableViewShouldBeginDragging:)]) {
 		BOOL go = [delegate draggableViewShouldBeginDragging:self];
 		if (!go) return;
 	}
 	
 	dragging = YES;
-	lastLocation = [[touches anyObject] locationInView:self.superview];
+	lastLocation = [t locationInView:self.superview];
 	lastSpeedRecordingLocation = lastLocation;
 	dragStartDate = [NSDate new];
 	lastSpeedRecordingIntervalSinceStartOfDrag = 0;
@@ -67,7 +76,7 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 	if (delegate && [delegate respondsToSelector:@selector(draggableViewDidBeginDragging:)]) 
 		[delegate draggableViewDidBeginDragging:self];
 	
-	[self performSelector:@selector(_recordSpeed) withObject:nil afterDelay:0.05];
+	[self performSelector:@selector(_recordSpeed) withObject:nil afterDelay:0.05];	
 }
 
 - (void) _recordSpeed;
@@ -82,9 +91,14 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
 {
+	[self _moveByDraggingWithTouch:[touches anyObject]];
+}
+
+- (void) _moveByDraggingWithTouch:(UITouch*) t;
+{
 	if (!dragging) return;
 	
-	CGPoint newLocation = [[touches anyObject] locationInView:self.superview];
+	CGPoint newLocation = [t locationInView:self.superview];
 	
 	CGFloat deltaX = newLocation.x - lastLocation.x;
 	CGFloat deltaY = newLocation.y - lastLocation.y;
@@ -98,7 +112,7 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 	if (delegate && delegateImplementsDidDragToPoint)
 		[delegate draggableView:self didDragToPoint:center];
 	
-	lastLocation = newLocation;
+	lastLocation = newLocation;	
 }
 
 #define kL0MinimumMovementSpeedIn100MSForSlide 7.0
@@ -110,11 +124,18 @@ static inline BOOL L0VectorHasPointWithinAbsolute(CGPoint vector, CGFloat rangeA
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 {
+	[self _endDraggingWithTouch:[touches anyObject]];
+}
+
+- (void) _endDraggingWithTouch:(UITouch*) t;
+{
+	if (!dragging) return;
+	
 	dragging = NO;
 	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_recordSpeed) object:nil];
 	
 	NSAssert(self.superview != nil, @"No events should be received without a superview.");
-	CGPoint here = [[touches anyObject] locationInView:self.superview];
+	CGPoint here = [t locationInView:self.superview];
 	
 	CGPoint movementVector;
 	movementVector.x = here.x - lastSpeedRecordingLocation.x;
@@ -159,22 +180,22 @@ static inline BOOL L0VectorHasPointWithinAbsolute(CGPoint vector, CGFloat rangeA
 	// == SLIDE ==
 	// ===========
 	
-#define kL0DampeningFactor 0.5
-#define kL0MaximumSlideDistanceX 100.0
-#define kL0MaximumSlideDistanceY 300.0
+#define kL0DraggableViewSpeedDampeningFactor 0.45
+#define kL0DraggableViewMaximumSlideDistanceX 150.0
+#define kL0DraggableViewMaximumSlideDistanceY 350.0
 	CGPoint delta = movementVector;
 	int timeScale = 1;
 	while (!L0VectorHasPointWithinAbsolute(movementVector, 5.0)) {
-		movementVector.x *= kL0DampeningFactor;
-		movementVector.y *= kL0DampeningFactor;
+		movementVector.x *= kL0DraggableViewSpeedDampeningFactor;
+		movementVector.y *= kL0DraggableViewSpeedDampeningFactor;
 		
 		delta.x += movementVector.x;
 		delta.y += movementVector.y;
 		
 		timeScale++;
 		
-		if (ABS(delta.x) > kL0MaximumSlideDistanceX || 
-			ABS(delta.y) > kL0MaximumSlideDistanceY)
+		if (ABS(delta.x) > kL0DraggableViewMaximumSlideDistanceX || 
+			ABS(delta.y) > kL0DraggableViewMaximumSlideDistanceY)
 			break;
 	}
 	
@@ -212,7 +233,7 @@ static inline BOOL L0VectorHasPointWithinAbsolute(CGPoint vector, CGFloat rangeA
 	
 	self.center = center;
 	
-	[UIView commitAnimations];
+	[UIView commitAnimations];	
 }
 
 - (void) _slideAnimation:(NSString*) name didEndByFinishing:(BOOL) finished context:(void*) nothing;
