@@ -128,7 +128,7 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 #pragma mark -
 #pragma mark Pressing methods
 
-#define kL0DraggableViewPressAndHoldDelay 1.0
+#define kL0DraggableViewPressAndHoldDelay 0.7
 
 - (void) _beginPressingWithTouch:(UITouch*) t;
 {
