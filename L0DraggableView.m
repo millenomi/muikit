@@ -3,7 +3,7 @@
 //  Shard
 //
 //  Created by ∞ on 21/03/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009 Emanuele Vulcano. All rights reserved.
 //
 
 #import "L0DraggableView.h"
