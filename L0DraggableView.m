@@ -44,6 +44,11 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 - (void) _moveByDraggingWithTouch:(UITouch*) t;
 - (void) _endDraggingWithTouch:(UITouch*) t;
 
+- (void) _beginPressingWithTouch:(UITouch*) t;
+- (BOOL) _tryEndingPressWithTouch:(UITouch*) t;
+- (void) _detectPressAndHold;
+- (void) _detectPressUp;
+
 @end
 
 #pragma mark -
@@ -61,22 +66,49 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 {
-	[self _beginDraggingWithTouch:[touches anyObject]];
+	[self _beginPressingWithTouch:[touches anyObject]];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
 {
-	[self _moveByDraggingWithTouch:[touches anyObject]];
+	UITouch* t = [touches anyObject];
+	
+	L0Log(@"Touches moved, is pressing? %d, is canceled until touch up? %d", pressingWithoutDrag, draggingCanceledUntilTouchUp);
+	
+	if (pressingWithoutDrag) {
+		if (![self _tryEndingPressWithTouch:t]) {
+			// NO = do not start with drag yet.
+			return;
+		}
+	}
+	
+	if (!draggingCanceledUntilTouchUp) {
+		if (!dragging)
+			[self _beginDraggingWithTouch:t];
+		else
+			[self _moveByDraggingWithTouch:t];
+	}
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 {
-	[self _endDraggingWithTouch:[touches anyObject]];
+	if (pressingWithoutDrag) {
+		[self _detectPressUp];
+		return;
+	}
+	
+	if (!draggingCanceledUntilTouchUp)
+		[self _endDraggingWithTouch:[touches anyObject]];
+	
+	draggingCanceledUntilTouchUp = NO;
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
 {
-	[self _endDraggingWithTouch:nil]; // nil == canceled -- no attraction, no slide
+	if (!draggingCanceledUntilTouchUp)
+		[self _endDraggingWithTouch:nil]; // nil == canceled -- no attraction, no slide
+	
+	draggingCanceledUntilTouchUp = NO;
 }
 
 #pragma mark -
@@ -88,7 +120,7 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 {
 	if (pressingWithoutDrag || dragging) return;
 	
-	L0Log(@"%@", touch);
+	L0Log(@"%@", t);
 	
 	pressingWithoutDrag = YES;
 	pressLocation = [t locationInView:self.superview];
@@ -108,10 +140,11 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 {
 	if (!pressingWithoutDrag || dragging) return;
 	
-	L0Log(@"Detected press and hold");
-	
 	// TODO warn delegate of press and hold
 	draggingCanceledUntilTouchUp = YES; // = [delegate draggingViewCanDragAfterPressAndHold:self];
+
+	L0Log(@"Detected press and hold -- will cancel dragging until touch up: %d", draggingCanceledUntilTouchUp);
+	
 	[self _endPressing];
 }
 
