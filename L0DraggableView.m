@@ -8,6 +8,11 @@
 
 #import "L0DraggableView.h"
 
+static inline BOOL L0VectorHasPointWithinAbsolute(CGPoint vector, CGFloat rangeAbs) {
+	return
+	ABS(vector.x) < rangeAbs && ABS(vector.y) < rangeAbs;
+}
+
 static inline CGFloat L0ClampToMaximumAbsolute(CGFloat value, CGFloat maximumAbs) {
 	maximumAbs = ABS(maximumAbs);
 	
@@ -116,12 +121,7 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 	lastLocation = newLocation;	
 }
 
-#define kL0MinimumMovementSpeedIn100MSForSlide 7.0
-
-static inline BOOL L0VectorHasPointWithinAbsolute(CGPoint vector, CGFloat rangeAbs) {
-	return
-	ABS(vector.x) < rangeAbs && ABS(vector.y) < rangeAbs;
-}
+#define kL0DraggableViewMinimumMovementSpeedIn100MSForSlide 7.0
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 {
@@ -150,7 +150,7 @@ static inline BOOL L0VectorHasPointWithinAbsolute(CGPoint vector, CGFloat rangeA
 	speedPointsPer100MS.x = (movementVector.x / movementTime) * 0.1;
 	speedPointsPer100MS.y = (movementVector.y / movementTime) * 0.1;
 	
-	BOOL continuesWithSlide = !L0VectorHasPointWithinAbsolute(speedPointsPer100MS, kL0MinimumMovementSpeedIn100MSForSlide);
+	BOOL continuesWithSlide = !L0VectorHasPointWithinAbsolute(speedPointsPer100MS, kL0DraggableViewMinimumMovementSpeedIn100MSForSlide);
 	
 	if (delegate && [delegate respondsToSelector:@selector(draggableViewDidEndDragging:continuesWithSlide:)])
 		[delegate draggableViewDidEndDragging:self continuesWithSlide:continuesWithSlide];
