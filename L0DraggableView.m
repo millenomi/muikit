@@ -66,6 +66,8 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 
 - (void) _beginDraggingWithTouch:(UITouch*) t;
 {
+	if (dragging) return;
+	
 	if (delegate && [delegate respondsToSelector:@selector(draggableViewShouldBeginDragging:)]) {
 		BOOL go = [delegate draggableViewShouldBeginDragging:self];
 		if (!go) return;
