@@ -47,6 +47,7 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 @implementation L0DraggableView
 
 - (void)dealloc {
+	[dragStartDate release];
     [super dealloc];
 }
 
@@ -142,6 +143,8 @@ static inline BOOL L0VectorHasPointWithinAbsolute(CGPoint vector, CGFloat rangeA
 	movementVector.y = here.y - lastSpeedRecordingLocation.y;
 	
 	NSTimeInterval movementTime = (-[dragStartDate timeIntervalSinceNow]) - lastSpeedRecordingIntervalSinceStartOfDrag;
+	[dragStartDate release];
+	dragStartDate = nil;
 	
 	CGPoint speedPointsPer100MS;
 	speedPointsPer100MS.x = (movementVector.x / movementTime) * 0.1;
