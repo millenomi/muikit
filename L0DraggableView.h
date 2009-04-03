@@ -11,6 +11,11 @@
 @protocol L0DraggableViewDelegate;
 
 @interface L0DraggableView : UIView {
+	BOOL pressingWithoutDrag;
+	CGPoint pressLocation;
+	
+	BOOL draggingCanceledUntilTouchUp;
+	
 	BOOL dragging;
 	CGPoint lastLocation;
 	

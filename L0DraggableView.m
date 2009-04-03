@@ -57,12 +57,84 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 }
 
 #pragma mark -
-#pragma mark L0DraggableView dragging methods
+#pragma mark Event handling
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 {
 	[self _beginDraggingWithTouch:[touches anyObject]];
 }
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+	[self _moveByDraggingWithTouch:[touches anyObject]];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+	[self _endDraggingWithTouch:[touches anyObject]];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+	[self _endDraggingWithTouch:nil]; // nil == canceled -- no attraction, no slide
+}
+
+#pragma mark -
+#pragma mark Pressing methods
+
+#define kL0DraggableViewPressAndHoldDelay 1.0
+
+- (void) _beginPressingWithTouch:(UITouch*) t;
+{
+	if (pressingWithoutDrag || dragging) return;
+	
+	pressingWithoutDrag = YES;
+	pressLocation = [t locationInView:self.superview];
+	[self performSelector:@selector(_detectPressAndHold) withObject:nil afterDelay:kL0DraggableViewPressAndHoldDelay];
+}
+
+- (void) _endPressing;
+{
+	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_detectPressAndHold) object:nil];
+	pressingWithoutDrag = NO;
+}
+
+// YES if dragging should be allowed afterwards, NO otherwise.
+- (void) _detectPressAndHold;
+{
+	if (!pressingWithoutDrag || dragging) return;
+	
+	// TODO warn delegate of press and hold
+	draggingCanceledUntilTouchUp = YES; // = [delegate draggingViewCanDragAfterPressAndHold:self];
+	[self _endPressing];
+}
+
+- (void) _detectPressUp;
+{
+	if (!pressingWithoutDrag || dragging) return;
+	
+	// TODO warn delegate of press up
+	[self _endPressing];
+}
+
+#define kL0DraggableViewPressTolerance 10.0
+
+// if YES, pressing has ended because the user started dragging instead.
+- (BOOL) _tryEndingPressWithTouch:(UITouch*) t;
+{
+	CGPoint here = [t locationInView:self.superview];
+	here.x -= pressLocation.x;
+	here.y -= pressLocation.y;
+	
+	if (!L0VectorHasPointWithinAbsolute(here, kL0DraggableViewPressTolerance)) {
+		[self _endPressing];
+		return YES;
+	} else
+		return NO;
+}
+
+#pragma mark -
+#pragma mark Dragging methods
 
 - (void) _beginDraggingWithTouch:(UITouch*) t;
 {
@@ -99,11 +171,6 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 	[self performSelector:@selector(_recordSpeed) withObject:nil afterDelay:0.2];
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
-{
-	[self _moveByDraggingWithTouch:[touches anyObject]];
-}
-
 - (void) _moveByDraggingWithTouch:(UITouch*) t;
 {
 	if (!dragging) return;
@@ -127,11 +194,6 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 
 #define kL0DraggableViewMinimumMovementSpeedIn100MSForSlide 7.0
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
-{
-	[self _endDraggingWithTouch:[touches anyObject]];
-}
-
 // If t == nil, we stop where we are and never continue with a slide or an attraction.
 - (void) _endDraggingWithTouch:(UITouch*) t;
 {
@@ -145,12 +207,12 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 	dragStartDate = nil;
 	
 	BOOL continuesWithSlide = NO;
+	CGPoint movementVector;
 	
 	if (t) {
 		NSAssert(self.superview != nil, @"No events should be received without a superview.");
 		CGPoint here = [t locationInView:self.superview];
 		
-		CGPoint movementVector;
 		movementVector.x = here.x - lastSpeedRecordingLocation.x;
 		movementVector.y = here.y - lastSpeedRecordingLocation.y;
 		
@@ -264,11 +326,6 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 	
 	if (delegate && [delegate respondsToSelector:@selector(draggableView:didEndAttractionByFinishing:)])
 		[delegate draggableView:self didEndAttractionByFinishing:finished];
-}
-
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
-{
-	[self _endDraggingWithTouch:nil]; // nil == canceled -- no attraction, no slide
 }
 
 @synthesize delegate;
