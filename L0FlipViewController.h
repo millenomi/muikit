@@ -13,6 +13,7 @@
 	IBOutlet UIViewController* backController;
 	
 	BOOL isFlipped;
+	BOOL cacheViewsDuringFlip;
 }
 
 - (id) initWithFrontController:(UIViewController*) front backController:(UIViewController*) back;
@@ -24,6 +25,7 @@
 @property(readonly) UIViewController* hiddenController;
 
 @property(getter=isFlipped) BOOL flipped;
+@property BOOL cacheViewsDuringFlip;
 - (void) setFlipped:(BOOL) flipped animated:(BOOL) animated;
 
 - (IBAction) showFront;

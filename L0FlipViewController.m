@@ -27,6 +27,8 @@
 		
 		self.frontController = front;
 		self.backController = back;
+		
+		self.cacheViewsDuringFlip = YES;
 	}
 	
 	return self;
@@ -69,7 +71,7 @@
 	
 	if (animated) {
 		[UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationTransition:(flipped ? UIViewAnimationTransitionFlipFromRight : UIViewAnimationTransitionFlipFromLeft) forView:self.view cache:YES];
+		[UIView setAnimationTransition:(flipped ? UIViewAnimationTransitionFlipFromRight : UIViewAnimationTransitionFlipFromLeft) forView:self.view cache:self.cacheViewsDuringFlip];
 		[UIView setAnimationDuration:1.0];
 	}
 	
