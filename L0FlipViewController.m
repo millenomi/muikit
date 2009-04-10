@@ -19,6 +19,7 @@
 @implementation L0FlipViewController
 
 @synthesize frontController, backController;
+@synthesize cacheViewsDuringFlip;
 
 - (id) initWithFrontController:(UIViewController*) front backController:(UIViewController*) back;
 {	
