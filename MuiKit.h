@@ -11,3 +11,4 @@
 #import "UIAlertView+L0Alert.h"
 #import "L0UUID.h"
 #import "L0FlipViewController.h"
+#import "UIDevice+L0ModelDetection.h"

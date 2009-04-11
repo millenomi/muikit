@@ -66,8 +66,11 @@
 	if (current == next) current = nil;
 	
 	[current viewWillDisappear:animated];
+	BOOL animationsWereEnabled = [UIView areAnimationsEnabled];
+	[UIView setAnimationsEnabled:NO];
 	UIView* nextView = next.view; // this loads it.
 	nextView.frame = [self.view bounds];
+	[UIView setAnimationsEnabled:animationsWereEnabled];
 	[next viewWillAppear:animated];
 	
 	if (animated) {
