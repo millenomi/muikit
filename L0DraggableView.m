@@ -356,7 +356,7 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 		[UIView setAnimationDelegate:self];
 		[UIView setAnimationDidStopSelector:@selector(_slideAnimation:didEndByFinishing:context:)];
 	}
-	L0LogIf(!delegate, @"no delegate set");
+	L0LogDebugIf(!delegate, @"no delegate set");
 	
 	CGPoint center = self.center;
 	center.x += delta.x;
