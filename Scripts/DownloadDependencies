@@ -22,5 +22,5 @@ if [ ! -f Local.xcconfig ]; then
 fi
 
 cat > Dependencies.xcconfig << EOF
-INFINITELABS_TOOLS = \$(SRCROOT)/"$INFINITELABS_TOOLS"
+INFINITELABS_TOOLS = \$(SRCROOT)/$INFINITELABS_TOOLS
 EOF
