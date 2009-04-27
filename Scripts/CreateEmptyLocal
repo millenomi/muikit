@@ -1,0 +1,5 @@
+#!/bin/bash
+
+HERE="`dirname "$0"`"
+cd "$HERE"/..
+touch Local.xcconfig

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+HERE="`dirname "$0"`"
+cd "$HERE"/..
+
+mkdir -p Dependencies
+if [ ! -d Dependencies/BuildTools ]; then
+	git clone git://github.com/millenomi/infinitelabs-build-tools.git Dependencies/BuildTools || exit 1
+else
+	(cd Dependencies/BuildTools; git pull) || exit 1
+fi
+
+if [ ! -f Local.xcconfig ]; then
+	echo "#include \"Dependencies.xcconfig\"" > Local.xcconfig
+fi
+
+cat > Dependencies.xcconfig << EOF
+INFINITELABS_TOOLS = \$(SRCROOT)/Dependencies/BuildTools
+EOF
