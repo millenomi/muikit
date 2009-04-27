@@ -3,11 +3,18 @@
 HERE="`dirname "$0"`"
 cd "$HERE"/..
 
-mkdir -p Dependencies
-if [ ! -d Dependencies/BuildTools ]; then
-	git clone git://github.com/millenomi/infinitelabs-build-tools.git Dependencies/BuildTools || exit 1
+if [ -d "$INFINITELABS_TOOLS" ]; then
+	echo "note: Using $INFINITELABS_TOOLS for the INFINITELABS_TOOLS dependency for MuiKit." >&2
+	echo "note: This dependency must be relative to the MuiKit source root, `pwd`, to work."
 else
-	(cd Dependencies/BuildTools; git pull) || exit 1
+	INFINITELABS_TOOLS="Dependencies/BuildTools"
+fi
+
+mkdir -p "`dirname "$INFINITELABS_TOOLS"`"
+if [ ! -d "$INFINITELABS_TOOLS" ]; then
+	git clone git://github.com/millenomi/infinitelabs-build-tools.git "$INFINITELABS_TOOLS" || exit 1
+else
+	(cd "$INFINITELABS_TOOLS"; git pull) || exit 1
 fi
 
 if [ ! -f Local.xcconfig ]; then
@@ -15,5 +22,5 @@ if [ ! -f Local.xcconfig ]; then
 fi
 
 cat > Dependencies.xcconfig << EOF
-INFINITELABS_TOOLS = \$(SRCROOT)/Dependencies/BuildTools
+INFINITELABS_TOOLS = \$(SRCROOT)/"$INFINITELABS_TOOLS"
 EOF
