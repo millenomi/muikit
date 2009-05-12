@@ -5,3 +5,4 @@ TemporaryItems
 *.xcodeproj/*.pbxuser
 .DS_Store
 Compiled Locales
+Local*.xcconfig
