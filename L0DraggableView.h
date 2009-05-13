@@ -53,9 +53,12 @@
 	
 	id <L0DraggableViewDelegate> delegate;
 	BOOL delegateImplementsDidDragToPoint;
+	
+	NSTimeInterval pressAndHoldDelay;
 }
 
 @property(assign) id <L0DraggableViewDelegate> delegate;
+@property NSTimeInterval pressAndHoldDelay;
 
 @end
 

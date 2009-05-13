@@ -56,7 +56,25 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 
 @implementation L0DraggableView
 
-- (void)dealloc {
+#define kL0DraggableViewPressAndHoldDefaultDelay (0.7)
+
+- (NSTimeInterval) pressAndHoldDelay;
+{
+	if (pressAndHoldDelay <= 0.1) {
+		L0Log(@"Resetting p&h delay to default %f from %f", kL0DraggableViewPressAndHoldDefaultDelay, pressAndHoldDelay);
+		pressAndHoldDelay = kL0DraggableViewPressAndHoldDefaultDelay;
+	}
+	
+	return pressAndHoldDelay;
+}
+
+- (void) setPressAndHoldDelay:(NSTimeInterval) i;
+{
+	pressAndHoldDelay = i;
+}
+	
+- (void) dealloc;
+{
 	[dragStartDate release];
     [super dealloc];
 }
@@ -128,8 +146,6 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 #pragma mark -
 #pragma mark Pressing methods
 
-#define kL0DraggableViewPressAndHoldDelay 0.7
-
 - (void) _beginPressingWithTouch:(UITouch*) t;
 {
 	if (pressingWithoutDrag || dragging) return;
@@ -144,11 +160,11 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 		return;
 	}
 	
-	L0Log(@"%@", t);
+	L0Log(@"%@, press and hold delay = %f", t, self.pressAndHoldDelay);
 	
 	pressingWithoutDrag = YES;
 	pressLocation = [t locationInView:self.superview];
-	[self performSelector:@selector(_detectPressAndHold) withObject:nil afterDelay:kL0DraggableViewPressAndHoldDelay];
+	[self performSelector:@selector(_detectPressAndHold) withObject:nil afterDelay:self.pressAndHoldDelay];
 }
 
 - (void) _endPressing;
