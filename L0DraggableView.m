@@ -134,6 +134,16 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 {
 	if (pressingWithoutDrag || dragging) return;
 	
+	if (t.tapCount > 1) {
+		L0Log(@"Tapping multiple times detected: %@", t);
+		
+		if (delegate && [delegate respondsToSelector:@selector(draggableView:didTapMultipleTimesWithTouch:)])
+			[delegate draggableView:self didTapMultipleTimesWithTouch:t];
+		
+		draggingCanceledUntilTouchUp = YES;
+		return;
+	}
+	
 	L0Log(@"%@", t);
 	
 	pressingWithoutDrag = YES;

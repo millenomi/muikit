@@ -69,6 +69,11 @@
 // Called when the view is pressed (touch down + touch up without dragging within a second).
 - (void) draggableViewDidPress:(L0DraggableView*) view;
 
+// Called when the view is tapped multiple times (a press followed by a touch down;
+// the call is then repeated at every touch up and touch down after that.)
+// Note that dragging is automatically cancelled if the view is tapped multiple times.
+- (void) draggableView:(L0DraggableView*) view didTapMultipleTimesWithTouch:(UITouch*) t;
+
 // Called when the view is pressed and held (touch down + no touch up in a second without
 // dragging). Return YES to allow the drag to start anyway, NO to prevent dragging
 // until after the next touch up.
