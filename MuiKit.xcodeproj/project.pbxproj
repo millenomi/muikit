@@ -58,6 +58,8 @@
 		156FD7EF0F7A2C2C00F83283 /* MuiKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15B446660F79028E00DA63E9 /* MuiKit.h */; };
 		1578916D0F7CE8F6006FF0C0 /* L0FlipViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1578916B0F7CE8F5006FF0C0 /* L0FlipViewController.h */; };
 		1578916E0F7CE8F6006FF0C0 /* L0FlipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1578916C0F7CE8F6006FF0C0 /* L0FlipViewController.m */; };
+		15AF56360FBAAE9200BE7F71 /* NSURL+L0URLParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AF56340FBAAE9200BE7F71 /* NSURL+L0URLParsing.m */; };
+		15AF56370FBAAE9600BE7F71 /* NSURL+L0URLParsing.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15AF56330FBAAE9200BE7F71 /* NSURL+L0URLParsing.h */; };
 		15B929540F90726A001E40B7 /* UIDevice+L0ModelDetection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15B929520F90726A001E40B7 /* UIDevice+L0ModelDetection.h */; };
 		15B929560F90726A001E40B7 /* UIDevice+L0ModelDetection.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B929520F90726A001E40B7 /* UIDevice+L0ModelDetection.h */; };
 		15B929570F90726A001E40B7 /* UIDevice+L0ModelDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B929530F90726A001E40B7 /* UIDevice+L0ModelDetection.m */; };
@@ -106,6 +108,7 @@
 				15518FE40F8255950055BCEC /* L0FlipViewController.h in CopyFiles */,
 				15B929540F90726A001E40B7 /* UIDevice+L0ModelDetection.h in CopyFiles */,
 				15FD32420FB9600400EB8ED5 /* L0ActionSheet.h in CopyFiles */,
+				15AF56370FBAAE9600BE7F71 /* NSURL+L0URLParsing.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +138,8 @@
 		156FD76C0F7A25F900F83283 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1578916B0F7CE8F5006FF0C0 /* L0FlipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0FlipViewController.h; sourceTree = "<group>"; };
 		1578916C0F7CE8F6006FF0C0 /* L0FlipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0FlipViewController.m; sourceTree = "<group>"; };
+		15AF56330FBAAE9200BE7F71 /* NSURL+L0URLParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+L0URLParsing.h"; sourceTree = "<group>"; };
+		15AF56340FBAAE9200BE7F71 /* NSURL+L0URLParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+L0URLParsing.m"; sourceTree = "<group>"; };
 		15B446660F79028E00DA63E9 /* MuiKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MuiKit.h; sourceTree = "<group>"; };
 		15B929520F90726A001E40B7 /* UIDevice+L0ModelDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+L0ModelDetection.h"; sourceTree = "<group>"; };
 		15B929530F90726A001E40B7 /* UIDevice+L0ModelDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+L0ModelDetection.m"; sourceTree = "<group>"; };
@@ -175,6 +180,7 @@
 		154B02100F78163C0082109B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				15AF56390FBAAE9A00BE7F71 /* URL Decoding */,
 				15FD32440FB9600A00EB8ED5 /* Action Sheet with Identifiers */,
 				15B929510F907255001E40B7 /* UIDevice Model Additions */,
 				157891700F7CE909006FF0C0 /* Flip View Controller */,
@@ -261,6 +267,15 @@
 				1578916C0F7CE8F6006FF0C0 /* L0FlipViewController.m */,
 			);
 			name = "Flip View Controller";
+			sourceTree = "<group>";
+		};
+		15AF56390FBAAE9A00BE7F71 /* URL Decoding */ = {
+			isa = PBXGroup;
+			children = (
+				15AF56330FBAAE9200BE7F71 /* NSURL+L0URLParsing.h */,
+				15AF56340FBAAE9200BE7F71 /* NSURL+L0URLParsing.m */,
+			);
+			name = "URL Decoding";
 			sourceTree = "<group>";
 		};
 		15B4459F0F78FAD200DA63E9 /* SDK */ = {
@@ -399,6 +414,7 @@
 				1578916E0F7CE8F6006FF0C0 /* L0FlipViewController.m in Sources */,
 				15B929570F90726A001E40B7 /* UIDevice+L0ModelDetection.m in Sources */,
 				15FD32410FB9600000EB8ED5 /* L0ActionSheet.m in Sources */,
+				15AF56360FBAAE9200BE7F71 /* NSURL+L0URLParsing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
