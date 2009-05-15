@@ -69,6 +69,11 @@
 // = PRESS + PRESS AND HOLD =
 // ==========================
 
+// Called when the view is touched (the first touch down) for the first time.
+// Press-and-hold will be detected approximately view.pressAndHoldDelay seconds
+// from this call.
+- (void) draggableView:(L0DraggableView*) view didTouch:(UITouch*) t;
+
 // Called when the view is pressed (touch down + touch up without dragging within a second).
 - (void) draggableViewDidPress:(L0DraggableView*) view;
 

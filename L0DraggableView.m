@@ -158,6 +158,10 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 		
 		draggingCanceledUntilTouchUp = YES;
 		return;
+	} else {
+		L0Log(@"First touch detected: %@", t);
+		if (delegate && [delegate respondsToSelector:@selector(draggableView:didTouch:)])
+			[delegate draggableView:self didTouch:t];
 	}
 	
 	L0Log(@"%@, press and hold delay = %f", t, self.pressAndHoldDelay);
