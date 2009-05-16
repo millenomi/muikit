@@ -26,6 +26,7 @@
 {
 	if (self = [super initWithFrame:frame]) {
 		buttonIdentifiers = [NSMutableArray new];
+		additionalData = [NSMutableDictionary new];
 	}
 	
 	return self;
@@ -50,8 +51,21 @@
 
 - (void)dealloc {
 	[buttonIdentifiers release];
+	[additionalData release];
     [super dealloc];
 }
 
+- (id) valueForUndefinedKey:(NSString*) key;
+{
+	return [additionalData objectForKey:key];
+}
+
+- (void) setValue:(id) v forUndefinedKey:(NSString*) k;
+{
+	if (v)
+		[additionalData setObject:v forKey:k];
+	else
+		[additionalData removeObjectForKey:k];
+}
 
 @end

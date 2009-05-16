@@ -11,9 +11,12 @@
 
 @interface L0ActionSheet : UIActionSheet {
 	NSMutableArray* buttonIdentifiers;
+	NSMutableDictionary* additionalData;
 }
 
 - (NSInteger) addButtonWithTitle:(NSString*) title identifier:(id) identifier;
 - (id) identifierForButtonAtIndex:(NSInteger) index;
+
+// Also a generic KVO container.
 
 @end
