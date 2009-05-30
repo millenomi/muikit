@@ -55,10 +55,16 @@
 	BOOL delegateImplementsDidDragToPoint;
 	
 	NSTimeInterval pressAndHoldDelay;
+	
+	CGSize maximumSlideDistances;
+	CGFloat slideSpeedDampeningFactor;
 }
 
 @property(assign) id <L0DraggableViewDelegate> delegate;
 @property NSTimeInterval pressAndHoldDelay;
+
+@property CGSize maximumSlideDistances;
+@property CGFloat slideSpeedDampeningFactor;
 
 @end
 

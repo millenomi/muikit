@@ -49,12 +49,41 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 - (void) _detectPressAndHold;
 - (void) _detectPressUp;
 
+- (void) performDraggableViewInitialization;
+
 @end
 
 #pragma mark -
 #pragma mark L0DraggableView itself
 
+#define kL0DraggableViewDefaultMaximumSlideDistance 150.0
+#define kL0DraggableViewDefaultSpeedDampeningFactor 0.50
+
 @implementation L0DraggableView
+
+- (id) initWithFrame:(CGRect) frame;
+{
+	if (self = [super initWithFrame:frame])
+		[self performDraggableViewInitialization];
+	
+	return self;
+}
+
+- (id) initWithCoder:(NSCoder*) coder;
+{
+	if (self = [super initWithCoder:coder])
+		[self performDraggableViewInitialization];
+
+	return self;
+}
+
+- (void) performDraggableViewInitialization;
+{
+	self.maximumSlideDistances = CGSizeMake(kL0DraggableViewDefaultMaximumSlideDistance, kL0DraggableViewDefaultMaximumSlideDistance);
+	self.slideSpeedDampeningFactor = kL0DraggableViewDefaultSpeedDampeningFactor;
+}
+
+@synthesize maximumSlideDistances, slideSpeedDampeningFactor;
 
 #define kL0DraggableViewPressAndHoldDefaultDelay (0.7)
 
@@ -356,23 +385,38 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 	// ===========
 	// == SLIDE ==
 	// ===========
+
+	CGSize maxSlideDistances = self.maximumSlideDistances;
+	CGFloat dampening = self.slideSpeedDampeningFactor;
 	
-#define kL0DraggableViewSpeedDampeningFactor 0.45
-#define kL0DraggableViewMaximumSlideDistanceX 150.0
-#define kL0DraggableViewMaximumSlideDistanceY 350.0
+	CGFloat startingSlideDistance = sqrt(pow(movementVector.x, 2) + pow(movementVector.y, 2));
+	if (startingSlideDistance < 30) {
+		// nx = k*x, ny = k*y
+		// 30 = sqrt(nx^2 + ny^2)
+		// 900 = nx^2 + ny^2
+		// 900 = k^2 * x^2 + k^2 * y^2
+		// 900 = 2k^2 * (x^2 + y^2)
+		// 2k^2 = (x^2 + y^2) / 900
+		// k^2 = (x^2 + y^2) / (900 * 2)
+		// k = sqrt((x^2 + y^2) / (900 * 2))
+		CGFloat k = sqrt((pow(movementVector.x, 2) + pow(movementVector.y, 2)) / (900 * 2));
+		movementVector.x *= k;
+		movementVector.y *= k;
+	}
+	
 	CGPoint delta = movementVector;
 	int timeScale = 1;
 	while (!L0VectorHasPointWithinAbsolute(movementVector, 5.0)) {
-		movementVector.x *= kL0DraggableViewSpeedDampeningFactor;
-		movementVector.y *= kL0DraggableViewSpeedDampeningFactor;
+		movementVector.x *= dampening;
+		movementVector.y *= dampening;
 		
 		delta.x += movementVector.x;
 		delta.y += movementVector.y;
 		
 		timeScale++;
 		
-		if (ABS(delta.x) > kL0DraggableViewMaximumSlideDistanceX || 
-			ABS(delta.y) > kL0DraggableViewMaximumSlideDistanceY)
+		if (ABS(delta.x) > maxSlideDistances.width || 
+			ABS(delta.y) > maxSlideDistances.height)
 			break;
 	}
 	
