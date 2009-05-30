@@ -8,6 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+static inline CGSize L0SizeFromSizeNotLargerThan(CGSize r, CGSize maximum) {
+	CGFloat ratio = r.width / r.height;
+	
+	if (r.width > r.height) {
+		if (r.width > maximum.width) {
+			r.width = maximum.width;
+			r.height = maximum.width / ratio;
+		}
+	} else {
+		if (r.height > maximum.height) {
+			r.height = maximum.height;
+			r.width = maximum.height * ratio;
+		}
+	}
+	
+	return r;
+}
+
 @interface UIImage (L0RenderingAdditions)
 
 // Original code from badpirate at
