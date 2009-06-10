@@ -63,6 +63,8 @@
 		15B929540F90726A001E40B7 /* UIDevice+L0ModelDetection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15B929520F90726A001E40B7 /* UIDevice+L0ModelDetection.h */; };
 		15B929560F90726A001E40B7 /* UIDevice+L0ModelDetection.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B929520F90726A001E40B7 /* UIDevice+L0ModelDetection.h */; };
 		15B929570F90726A001E40B7 /* UIDevice+L0ModelDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B929530F90726A001E40B7 /* UIDevice+L0ModelDetection.m */; };
+		15C0C1570FDFCF22005A75B6 /* L0KVODictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C0C1550FDFCF22005A75B6 /* L0KVODictionaryAdditions.m */; };
+		15C0C1680FDFD03B005A75B6 /* L0KVODictionaryAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15C0C1540FDFCF22005A75B6 /* L0KVODictionaryAdditions.h */; };
 		15FD32410FB9600000EB8ED5 /* L0ActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD323F0FB9600000EB8ED5 /* L0ActionSheet.m */; };
 		15FD32420FB9600400EB8ED5 /* L0ActionSheet.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15FD323E0FB9600000EB8ED5 /* L0ActionSheet.h */; };
 /* End PBXBuildFile section */
@@ -109,6 +111,7 @@
 				15B929540F90726A001E40B7 /* UIDevice+L0ModelDetection.h in CopyFiles */,
 				15FD32420FB9600400EB8ED5 /* L0ActionSheet.h in CopyFiles */,
 				15AF56370FBAAE9600BE7F71 /* NSURL+L0URLParsing.h in CopyFiles */,
+				15C0C1680FDFD03B005A75B6 /* L0KVODictionaryAdditions.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +146,8 @@
 		15B446660F79028E00DA63E9 /* MuiKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MuiKit.h; sourceTree = "<group>"; };
 		15B929520F90726A001E40B7 /* UIDevice+L0ModelDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+L0ModelDetection.h"; sourceTree = "<group>"; };
 		15B929530F90726A001E40B7 /* UIDevice+L0ModelDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+L0ModelDetection.m"; sourceTree = "<group>"; };
+		15C0C1540FDFCF22005A75B6 /* L0KVODictionaryAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0KVODictionaryAdditions.h; sourceTree = "<group>"; };
+		15C0C1550FDFCF22005A75B6 /* L0KVODictionaryAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0KVODictionaryAdditions.m; sourceTree = "<group>"; };
 		15FD323E0FB9600000EB8ED5 /* L0ActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0ActionSheet.h; sourceTree = "<group>"; };
 		15FD323F0FB9600000EB8ED5 /* L0ActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0ActionSheet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,6 +185,7 @@
 		154B02100F78163C0082109B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				15C0C1530FDFCEF1005A75B6 /* KVO Additions */,
 				15AF56390FBAAE9A00BE7F71 /* URL Decoding */,
 				15FD32440FB9600A00EB8ED5 /* Action Sheet with Identifiers */,
 				15B929510F907255001E40B7 /* UIDevice Model Additions */,
@@ -294,6 +300,15 @@
 				15B929530F90726A001E40B7 /* UIDevice+L0ModelDetection.m */,
 			);
 			name = "UIDevice Model Additions";
+			sourceTree = "<group>";
+		};
+		15C0C1530FDFCEF1005A75B6 /* KVO Additions */ = {
+			isa = PBXGroup;
+			children = (
+				15C0C1540FDFCF22005A75B6 /* L0KVODictionaryAdditions.h */,
+				15C0C1550FDFCF22005A75B6 /* L0KVODictionaryAdditions.m */,
+			);
+			name = "KVO Additions";
 			sourceTree = "<group>";
 		};
 		15FD32440FB9600A00EB8ED5 /* Action Sheet with Identifiers */ = {
@@ -415,6 +430,7 @@
 				15B929570F90726A001E40B7 /* UIDevice+L0ModelDetection.m in Sources */,
 				15FD32410FB9600000EB8ED5 /* L0ActionSheet.m in Sources */,
 				15AF56360FBAAE9200BE7F71 /* NSURL+L0URLParsing.m in Sources */,
+				15C0C1570FDFCF22005A75B6 /* L0KVODictionaryAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
