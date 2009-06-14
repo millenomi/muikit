@@ -69,19 +69,23 @@
 	BOOL animationsWereEnabled = [UIView areAnimationsEnabled];
 	[UIView setAnimationsEnabled:NO];
 	UIView* nextView = next.view; // this loads it.
-	nextView.frame = [self.view bounds];
+	nextView.frame = self.view.bounds;
+	nextView.hidden = YES;
+	[self.view addSubview:nextView];	
+	
 	[UIView setAnimationsEnabled:animationsWereEnabled];
 	[next viewWillAppear:animated];
 	
 	if (animated) {
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationTransition:(flipped ? UIViewAnimationTransitionFlipFromRight : UIViewAnimationTransitionFlipFromLeft) forView:self.view cache:self.cacheViewsDuringFlip];
-		[UIView setAnimationDuration:1.0];
+		[UIView setAnimationDuration:1.0];		
 	}
 	
 	for (UIView* v in self.view.subviews)
 		[v removeFromSuperview];
 	[self.view addSubview:nextView];
+	nextView.hidden = NO;
 	
 	if (animated)
 		[UIView commitAnimations];
