@@ -34,6 +34,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		153B7FE20FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 153B7FE00FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m */; };
+		153B7FE40FF2054D00DDFD16 /* UIApplication+L0NetworkIndicator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 153B7FDF0FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.h */; };
 		154B02050F7816210082109B /* L0ExternalURLOpeningDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B01FB0F7816210082109B /* L0ExternalURLOpeningDetection.m */; };
 		154B02060F7816210082109B /* L0SolicitReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B01FC0F7816210082109B /* L0SolicitReviewController.m */; };
 		154B02070F7816210082109B /* L0ExternalURLOpeningDetection.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B01FD0F7816210082109B /* L0ExternalURLOpeningDetection.h */; };
@@ -112,12 +114,15 @@
 				15FD32420FB9600400EB8ED5 /* L0ActionSheet.h in CopyFiles */,
 				15AF56370FBAAE9600BE7F71 /* NSURL+L0URLParsing.h in CopyFiles */,
 				15C0C1680FDFD03B005A75B6 /* L0KVODictionaryAdditions.h in CopyFiles */,
+				153B7FE40FF2054D00DDFD16 /* UIApplication+L0NetworkIndicator.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		153B7FDF0FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+L0NetworkIndicator.h"; sourceTree = "<group>"; };
+		153B7FE00FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+L0NetworkIndicator.m"; sourceTree = "<group>"; };
 		154B01F00F78156D0082109B /* libMuiKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMuiKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		154B01F60F7815CA0082109B /* MuiKit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = MuiKit.xcconfig; sourceTree = "<group>"; };
 		154B01FB0F7816210082109B /* L0ExternalURLOpeningDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0ExternalURLOpeningDetection.m; sourceTree = "<group>"; };
@@ -163,6 +168,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		153B7FE30FF2054000DDFD16 /* Network Activity Indicator */ = {
+			isa = PBXGroup;
+			children = (
+				153B7FDF0FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.h */,
+				153B7FE00FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m */,
+			);
+			name = "Network Activity Indicator";
+			sourceTree = "<group>";
+		};
 		154B01DC0F7815560082109B = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +210,7 @@
 				154B02130F7816610082109B /* Image Rendering */,
 				154B02140F78166E0082109B /* Saved Alerts Support */,
 				154B02150F78167C0082109B /* Draggable Views */,
+				153B7FE30FF2054000DDFD16 /* Network Activity Indicator */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -431,6 +446,7 @@
 				15FD32410FB9600000EB8ED5 /* L0ActionSheet.m in Sources */,
 				15AF56360FBAAE9200BE7F71 /* NSURL+L0URLParsing.m in Sources */,
 				15C0C1570FDFCF22005A75B6 /* L0KVODictionaryAdditions.m in Sources */,
+				153B7FE20FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

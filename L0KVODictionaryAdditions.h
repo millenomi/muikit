@@ -16,4 +16,6 @@
 - (id) l0_previousValue;
 - (NSIndexSet*) l0_changedIndexes;
 
+- (BOOL) l0_isPrior;
+
 @end

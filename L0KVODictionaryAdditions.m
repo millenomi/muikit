@@ -34,4 +34,12 @@
 	return [self objectForKey:NSKeyValueChangeIndexesKey];
 }
 
+- (BOOL) l0_isPrior;
+{
+	NSNumber* n = [self objectForKey:NSKeyValueChangeNotificationIsPriorKey];
+	if (!n) return NO;
+	
+	return [n boolValue];
+}
+
 @end
