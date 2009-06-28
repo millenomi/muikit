@@ -8,14 +8,33 @@
 
 #import <Foundation/Foundation.h>
 
+static inline NSKeyValueChange L0KVOChangeKind(NSDictionary* self)
+{
+	NSNumber* n = [self objectForKey:NSKeyValueChangeKindKey];
+	if (!n) return 0;
+	
+	return [n integerValue];
+}
 
-@interface NSDictionary (L0KVODictionaryAdditions)
+static inline id L0KVOChangedValue(NSDictionary* self)
+{
+	return [self objectForKey:NSKeyValueChangeNewKey];
+}
 
-- (NSKeyValueChange) l0_changeKind;
-- (id) l0_changedValue;
-- (id) l0_previousValue;
-- (NSIndexSet*) l0_changedIndexes;
+static inline id L0KVOPreviousValue(NSDictionary* self)
+{
+	return [self objectForKey:NSKeyValueChangeOldKey];
+}
 
-- (BOOL) l0_isPrior;
+static inline NSIndexSet* L0KVOChangedIndexes(NSDictionary* self)
+{
+	return [self objectForKey:NSKeyValueChangeIndexesKey];
+}
 
-@end
+static inline BOOL L0KVOIsPrior(NSDictionary* self)
+{
+	NSNumber* n = [self objectForKey:NSKeyValueChangeNotificationIsPriorKey];
+	if (!n) return NO;
+	
+	return [n boolValue];
+}
