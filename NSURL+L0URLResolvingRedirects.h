@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if kL0MuiKitAllowBlocks
+#if __BLOCKS__
 typedef void (^L0URLResolvingDidEndBlock)(NSURL*);
 #endif
 
@@ -16,7 +16,7 @@ typedef void (^L0URLResolvingDidEndBlock)(NSURL*);
 
 - (void) beginResolvingRedirectsWithDelegate:(id) delegate selector:(SEL) selector;
 
-#if kL0MuiKitAllowBlocks
+#if __BLOCKS__
 - (void) beginResolvingRedirectsAndInvoke:(L0URLResolvingDidEndBlock) block;
 #endif
 

@@ -12,7 +12,7 @@
 	NSURLConnection* connection;
 	id delegate;
 	SEL selector;
-#if kL0MuiKitAllowBlocks
+#if __BLOCKS__
 	L0URLResolvingDidEndBlock block;
 #endif
 	
@@ -20,7 +20,7 @@
 }
 
 - (id) initWithURL:(NSURL*) url delegate:(id) delegate selector:(SEL) selector;
-#if kL0MuiKitAllowBlocks
+#if __BLOCKS__
 - (id) initWithURL:(NSURL*) url didEndBlock:(L0URLResolvingDidEndBlock) block;
 #endif
 
@@ -41,7 +41,7 @@
 	[[L0URLRedirectsResolver alloc] initWithURL:self delegate:delegate selector:selector];
 }
 
-#if kL0MuiKitAllowBlocks
+#if __BLOCKS__
 - (void) beginResolvingRedirectsAndInvoke:(L0URLResolvingDidEndBlock) block;
 {
 	[[L0URLRedirectsResolver alloc] initWithURL:self didEndBlock:block];
@@ -63,7 +63,7 @@
 	return self;
 }
 
-#if kL0MuiKitAllowBlocks
+#if __BLOCKS__
 - (id) initWithURL:(NSURL*) url didEndBlock:(L0URLResolvingDidEndBlock) b;
 {
 	if (self = [super init]) {
@@ -104,7 +104,7 @@
 	if (delegate && selector)
 		[delegate performSelector:selector withObject:self.lastSeenURL];
 	
-#if kL0MuiKitAllowBlocks
+#if __BLOCKS__
 	if (block)
 		block(self.lastSeenURL);
 #endif
@@ -121,7 +121,7 @@
 {
 	[connection release];
 	self.lastSeenURL = nil;
-#if kL0MuiKitAllowBlocks
+#if __BLOCKS__
 	[block release];
 #endif
 	[super dealloc];
