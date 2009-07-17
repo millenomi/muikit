@@ -105,7 +105,8 @@
 		[delegate performSelector:selector withObject:self.lastSeenURL];
 	
 #if kL0MuiKitAllowBlocks
-	block(self.lastSeenURL);
+	if (block)
+		block(self.lastSeenURL);
 #endif
 	
 	[connection release];
