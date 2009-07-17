@@ -38,13 +38,13 @@
 
 - (void) beginResolvingRedirectsWithDelegate:(id) delegate selector:(SEL) selector;
 {
-	[[L0URLRedirectsResolver alloc] initWithURL:self delegate:delegate selector:selector];
+	[[[L0URLRedirectsResolver alloc] initWithURL:self delegate:delegate selector:selector] autorelease];
 }
 
 #if __BLOCKS__
 - (void) beginResolvingRedirectsAndInvoke:(L0URLResolvingDidEndBlock) block;
 {
-	[[L0URLRedirectsResolver alloc] initWithURL:self didEndBlock:block];
+	[[[L0URLRedirectsResolver alloc] initWithURL:self didEndBlock:block] autorelease];
 }
 #endif
 
