@@ -34,6 +34,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1518EF571010B69D009C334E /* L0KVODispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1518EF551010B69D009C334E /* L0KVODispatcher.m */; };
+		1518EF581010B6A5009C334E /* L0KVODispatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1518EF541010B69D009C334E /* L0KVODispatcher.h */; };
 		153B7FE20FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 153B7FE00FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m */; };
 		153B7FE40FF2054D00DDFD16 /* UIApplication+L0NetworkIndicator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 153B7FDF0FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.h */; };
 		154B02050F7816210082109B /* L0ExternalURLOpeningDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B01FB0F7816210082109B /* L0ExternalURLOpeningDetection.m */; };
@@ -114,12 +116,15 @@
 				15AF56370FBAAE9600BE7F71 /* NSURL+L0URLParsing.h in CopyFiles */,
 				15C0C1680FDFD03B005A75B6 /* L0KVODictionaryAdditions.h in CopyFiles */,
 				153B7FE40FF2054D00DDFD16 /* UIApplication+L0NetworkIndicator.h in CopyFiles */,
+				1518EF581010B6A5009C334E /* L0KVODispatcher.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1518EF541010B69D009C334E /* L0KVODispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0KVODispatcher.h; sourceTree = "<group>"; };
+		1518EF551010B69D009C334E /* L0KVODispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0KVODispatcher.m; sourceTree = "<group>"; };
 		153B7FDF0FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+L0NetworkIndicator.h"; sourceTree = "<group>"; };
 		153B7FE00FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+L0NetworkIndicator.m"; sourceTree = "<group>"; };
 		154B01F00F78156D0082109B /* libMuiKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMuiKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -319,6 +324,8 @@
 			isa = PBXGroup;
 			children = (
 				15C0C1540FDFCF22005A75B6 /* L0KVODictionaryAdditions.h */,
+				1518EF541010B69D009C334E /* L0KVODispatcher.h */,
+				1518EF551010B69D009C334E /* L0KVODispatcher.m */,
 			);
 			name = "KVO Additions";
 			sourceTree = "<group>";
@@ -443,6 +450,7 @@
 				15FD32410FB9600000EB8ED5 /* L0ActionSheet.m in Sources */,
 				15AF56360FBAAE9200BE7F71 /* NSURL+L0URLParsing.m in Sources */,
 				153B7FE20FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m in Sources */,
+				1518EF571010B69D009C334E /* L0KVODispatcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
