@@ -24,6 +24,13 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 
 - (void) dealloc;
 {
+	for (NSValue* ptr in selectorsByKeyPathsAndObjects) {
+		id object = [ptr nonretainedObjectValue];
+		
+		for (NSString* keyPath in [selectorsByKeyPathsAndObjects objectForKey:ptr])
+			[object removeObserver:self forKeyPath:keyPath];
+	}
+	
 	[selectorsByKeyPathsAndObjects release];
 	[super dealloc];
 }
@@ -58,7 +65,7 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 	NSString* selectorString = [selectorsByKeyPath objectForKey:keyPath];
 
 	if (selectorString)
-		[target performSelector:NSSelectorFromString(selectorString) withObject:change];
+		[target performSelector:NSSelectorFromString(selectorString) withObject:object withObject:change];
 }
 
 - (void) endObserving:(NSString*) keyPath ofObject:(id) object;
