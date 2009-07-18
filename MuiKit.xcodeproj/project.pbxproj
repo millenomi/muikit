@@ -38,6 +38,22 @@
 		1518EF581010B6A5009C334E /* L0KVODispatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1518EF541010B69D009C334E /* L0KVODispatcher.h */; };
 		153B7FE20FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 153B7FE00FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m */; };
 		153B7FE40FF2054D00DDFD16 /* UIApplication+L0NetworkIndicator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 153B7FDF0FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.h */; };
+		154635831011C0D6000238EE /* L0ActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD323F0FB9600000EB8ED5 /* L0ActionSheet.m */; };
+		154635841011C0D6000238EE /* L0DraggableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B02020F7816210082109B /* L0DraggableView.m */; };
+		154635851011C0D6000238EE /* L0ExternalURLOpeningDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B01FB0F7816210082109B /* L0ExternalURLOpeningDetection.m */; };
+		154635861011C0D6000238EE /* L0FlipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1578916C0F7CE8F6006FF0C0 /* L0FlipViewController.m */; };
+		154635871011C0D6000238EE /* L0KVODispatcher+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 154635761011BDAE000238EE /* L0KVODispatcher+Test.m */; };
+		154635881011C0D6000238EE /* L0KVODispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1518EF551010B69D009C334E /* L0KVODispatcher.m */; };
+		154635891011C0D6000238EE /* L0SolicitReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B01FC0F7816210082109B /* L0SolicitReviewController.m */; };
+		1546358A1011C0D6000238EE /* L0UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559B5C40F7987F6005E4362 /* L0UUID.m */; };
+		1546358B1011C0D6000238EE /* NSURL+L0URLParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AF56340FBAAE9200BE7F71 /* NSURL+L0URLParsing.m */; };
+		1546358C1011C0D6000238EE /* NSURL+L0URLResolvingRedirects.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C0401210110ECB0090B009 /* NSURL+L0URLResolvingRedirects.m */; };
+		1546358D1011C0D6000238EE /* UIAlertView+L0Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B02220F78170B0082109B /* UIAlertView+L0Alert.m */; };
+		1546358E1011C0D6000238EE /* UIApplication+L0NetworkIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 153B7FE00FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m */; };
+		1546358F1011C0D6000238EE /* UIDevice+L0ModelDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B929530F90726A001E40B7 /* UIDevice+L0ModelDetection.m */; };
+		154635901011C0D6000238EE /* UIImage+L0RenderingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B01FE0F7816210082109B /* UIImage+L0RenderingAdditions.m */; };
+		154635AF1011C13A000238EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154635AE1011C13A000238EE /* UIKit.framework */; };
+		154635B11011C13F000238EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154635B01011C13F000238EE /* CoreGraphics.framework */; };
 		154B02050F7816210082109B /* L0ExternalURLOpeningDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B01FB0F7816210082109B /* L0ExternalURLOpeningDetection.m */; };
 		154B02060F7816210082109B /* L0SolicitReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154B01FC0F7816210082109B /* L0SolicitReviewController.m */; };
 		154B02070F7816210082109B /* L0ExternalURLOpeningDetection.h in Headers */ = {isa = PBXBuildFile; fileRef = 154B01FD0F7816210082109B /* L0ExternalURLOpeningDetection.h */; };
@@ -130,6 +146,12 @@
 		1518EF551010B69D009C334E /* L0KVODispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0KVODispatcher.m; sourceTree = "<group>"; };
 		153B7FDF0FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+L0NetworkIndicator.h"; sourceTree = "<group>"; };
 		153B7FE00FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+L0NetworkIndicator.m"; sourceTree = "<group>"; };
+		154635591011BD77000238EE /* MuiKit+Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "MuiKit+Test.octest"; path = "Build/Debug/MuiKit+Test.octest"; sourceTree = "<group>"; };
+		1546355A1011BD77000238EE /* MuiKit+Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MuiKit+Test-Info.plist"; sourceTree = "<group>"; };
+		154635751011BDAE000238EE /* L0KVODispatcher+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "L0KVODispatcher+Test.h"; sourceTree = "<group>"; };
+		154635761011BDAE000238EE /* L0KVODispatcher+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "L0KVODispatcher+Test.m"; sourceTree = "<group>"; };
+		154635AE1011C13A000238EE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		154635B01011C13F000238EE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		154B01F00F78156D0082109B /* libMuiKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMuiKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		154B01F60F7815CA0082109B /* MuiKit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = MuiKit.xcconfig; sourceTree = "<group>"; };
 		154B01FB0F7816210082109B /* L0ExternalURLOpeningDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0ExternalURLOpeningDetection.m; sourceTree = "<group>"; };
@@ -166,6 +188,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		154635561011BD77000238EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				154635AF1011C13A000238EE /* UIKit.framework in Frameworks */,
+				154635B11011C13F000238EE /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		154B01EE0F78156D0082109B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -185,13 +216,26 @@
 			name = "Network Activity Indicator";
 			sourceTree = "<group>";
 		};
+		154635531011BD36000238EE /* Unit Testing */ = {
+			isa = PBXGroup;
+			children = (
+				1546355A1011BD77000238EE /* MuiKit+Test-Info.plist */,
+				154635751011BDAE000238EE /* L0KVODispatcher+Test.h */,
+				154635761011BDAE000238EE /* L0KVODispatcher+Test.m */,
+			);
+			name = "Unit Testing";
+			sourceTree = "<group>";
+		};
 		154B01DC0F7815560082109B = {
 			isa = PBXGroup;
 			children = (
 				154B01F60F7815CA0082109B /* MuiKit.xcconfig */,
 				15B4459F0F78FAD200DA63E9 /* SDK */,
+				154635531011BD36000238EE /* Unit Testing */,
 				154B02100F78163C0082109B /* Sources */,
 				154B01F10F78156D0082109B /* Products */,
+				154635AE1011C13A000238EE /* UIKit.framework */,
+				154635B01011C13F000238EE /* CoreGraphics.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -200,6 +244,7 @@
 			children = (
 				154B01F00F78156D0082109B /* libMuiKit.a */,
 				156FD76B0F7A25F900F83283 /* MuiKit.bundle */,
+				154635591011BD77000238EE /* MuiKit+Test.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -367,6 +412,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		154635581011BD77000238EE /* MuiKit+Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1546355D1011BD79000238EE /* Build configuration list for PBXNativeTarget "MuiKit+Test" */;
+			buildPhases = (
+				154635541011BD77000238EE /* Resources */,
+				154635551011BD77000238EE /* Sources */,
+				154635561011BD77000238EE /* Frameworks */,
+				154635571011BD77000238EE /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MuiKit+Test";
+			productName = "MuiKit+Test";
+			productReference = 154635591011BD77000238EE /* MuiKit+Test.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		154B01EF0F78156D0082109B /* MuiKit (Library) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 154B01F40F78156E0082109B /* Build configuration list for PBXNativeTarget "MuiKit (Library)" */;
@@ -425,11 +488,19 @@
 				156FD75C0F7A259A00F83283 /* MuiKit (Headers) */,
 				156FD76A0F7A25F900F83283 /* MuiKit (Resources) */,
 				156FD7720F7A261B00F83283 /* MuiKit */,
+				154635581011BD77000238EE /* MuiKit+Test */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		154635541011BD77000238EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		156FD7670F7A25F900F83283 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -441,7 +512,44 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		154635571011BD77000238EE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		154635551011BD77000238EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				154635831011C0D6000238EE /* L0ActionSheet.m in Sources */,
+				154635841011C0D6000238EE /* L0DraggableView.m in Sources */,
+				154635851011C0D6000238EE /* L0ExternalURLOpeningDetection.m in Sources */,
+				154635861011C0D6000238EE /* L0FlipViewController.m in Sources */,
+				154635871011C0D6000238EE /* L0KVODispatcher+Test.m in Sources */,
+				154635881011C0D6000238EE /* L0KVODispatcher.m in Sources */,
+				154635891011C0D6000238EE /* L0SolicitReviewController.m in Sources */,
+				1546358A1011C0D6000238EE /* L0UUID.m in Sources */,
+				1546358B1011C0D6000238EE /* NSURL+L0URLParsing.m in Sources */,
+				1546358C1011C0D6000238EE /* NSURL+L0URLResolvingRedirects.m in Sources */,
+				1546358D1011C0D6000238EE /* UIAlertView+L0Alert.m in Sources */,
+				1546358E1011C0D6000238EE /* UIApplication+L0NetworkIndicator.m in Sources */,
+				1546358F1011C0D6000238EE /* UIDevice+L0ModelDetection.m in Sources */,
+				154635901011C0D6000238EE /* UIImage+L0RenderingAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		154B01ED0F78156D0082109B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -495,6 +603,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1546355B1011BD79000238EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "MuiKit+Test-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "MuiKit+Test";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		1546355C1011BD79000238EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "MuiKit+Test-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "MuiKit+Test";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		154B01DF0F7815560082109B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 154B01F60F7815CA0082109B /* MuiKit.xcconfig */;
@@ -650,6 +808,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1546355D1011BD79000238EE /* Build configuration list for PBXNativeTarget "MuiKit+Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1546355B1011BD79000238EE /* Debug */,
+				1546355C1011BD79000238EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		154B01E10F7815560082109B /* Build configuration list for PBXProject "MuiKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
