@@ -148,7 +148,6 @@
 		153B7FE00FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+L0NetworkIndicator.m"; sourceTree = "<group>"; };
 		154635591011BD77000238EE /* MuiKit+Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "MuiKit+Test.octest"; path = "Build/Debug/MuiKit+Test.octest"; sourceTree = "<group>"; };
 		1546355A1011BD77000238EE /* MuiKit+Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MuiKit+Test-Info.plist"; sourceTree = "<group>"; };
-		154635751011BDAE000238EE /* L0KVODispatcher+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "L0KVODispatcher+Test.h"; sourceTree = "<group>"; };
 		154635761011BDAE000238EE /* L0KVODispatcher+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "L0KVODispatcher+Test.m"; sourceTree = "<group>"; };
 		154635AE1011C13A000238EE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		154635B01011C13F000238EE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -220,7 +219,6 @@
 			isa = PBXGroup;
 			children = (
 				1546355A1011BD77000238EE /* MuiKit+Test-Info.plist */,
-				154635751011BDAE000238EE /* L0KVODispatcher+Test.h */,
 				154635761011BDAE000238EE /* L0KVODispatcher+Test.m */,
 			);
 			name = "Unit Testing";
@@ -258,23 +256,13 @@
 				15B929510F907255001E40B7 /* UIDevice Model Additions */,
 				157891700F7CE909006FF0C0 /* Flip View Controller */,
 				1559B5C10F7987DE005E4362 /* UUIDs */,
-				154B02110F7816430082109B /* External URL Opening Detection */,
 				154B02120F7816510082109B /* Soliciting Reviews */,
 				154B02130F7816610082109B /* Image Rendering */,
-				154B02140F78166E0082109B /* Saved Alerts Support */,
+				154B02140F78166E0082109B /* Saved Alerts */,
 				154B02150F78167C0082109B /* Draggable Views */,
 				153B7FE30FF2054000DDFD16 /* Network Activity Indicator */,
 			);
 			name = Sources;
-			sourceTree = "<group>";
-		};
-		154B02110F7816430082109B /* External URL Opening Detection */ = {
-			isa = PBXGroup;
-			children = (
-				154B01FD0F7816210082109B /* L0ExternalURLOpeningDetection.h */,
-				154B01FB0F7816210082109B /* L0ExternalURLOpeningDetection.m */,
-			);
-			name = "External URL Opening Detection";
 			sourceTree = "<group>";
 		};
 		154B02120F7816510082109B /* Soliciting Reviews */ = {
@@ -297,13 +285,13 @@
 			name = "Image Rendering";
 			sourceTree = "<group>";
 		};
-		154B02140F78166E0082109B /* Saved Alerts Support */ = {
+		154B02140F78166E0082109B /* Saved Alerts */ = {
 			isa = PBXGroup;
 			children = (
 				154B02040F7816210082109B /* UIAlertView+L0Alert.h */,
 				154B02000F7816210082109B /* UIAlertView+L0Alert.m */,
 			);
-			name = "Saved Alerts Support";
+			name = "Saved Alerts";
 			sourceTree = "<group>";
 		};
 		154B02150F78167C0082109B /* Draggable Views */ = {
@@ -346,6 +334,8 @@
 		15AF56390FBAAE9A00BE7F71 /* URL Handling */ = {
 			isa = PBXGroup;
 			children = (
+				154B01FD0F7816210082109B /* L0ExternalURLOpeningDetection.h */,
+				154B01FB0F7816210082109B /* L0ExternalURLOpeningDetection.m */,
 				15AF56330FBAAE9200BE7F71 /* NSURL+L0URLParsing.h */,
 				15AF56340FBAAE9200BE7F71 /* NSURL+L0URLParsing.m */,
 				15C0401110110ECB0090B009 /* NSURL+L0URLResolvingRedirects.h */,
