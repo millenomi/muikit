@@ -54,7 +54,7 @@ typedef void (^L0KVODispatcherSetChangeBlock)(id object);
 // Blocks-based versions of the above.
 - (void) forEachArrayChange:(NSDictionary*) change invokeBlockForInsertion:(L0KVODispatcherArrayChangeBlock) insertion removal:(L0KVODispatcherArrayChangeBlock) removal replacement:(L0KVODispatcherArrayReplacementBlock) replacement;
 
-- (void) forEachSetChange:(NSDictionary*) change invokeBlockForInsertion:(L0KVODispatcherArrayChangeBlock) insertion removal:(L0KVODispatcherArrayChangeBlock) removal;
+- (void) forEachSetChange:(NSDictionary*) change invokeBlockForInsertion:(L0KVODispatcherSetChangeBlock) insertion removal:(L0KVODispatcherSetChangeBlock) removal;
 #endif
 
 // Ends observing a key path whose observation started with observe:..., observeArray:... or observeSet:...

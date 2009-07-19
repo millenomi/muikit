@@ -226,7 +226,7 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 	}	
 }
 
-- (void) forEachSetChange:(NSDictionary*) change invokeBlockForInsertion:(L0KVODispatcherArrayChangeBlock) insertion removal:(L0KVODispatcherArrayChangeBlock) removal;
+- (void) forEachSetChange:(NSDictionary*) change invokeBlockForInsertion:(L0KVODispatcherSetChangeBlock) insertion removal:(L0KVODispatcherSetChangeBlock) removal;
 {
 	NSKeyValueChange changeKind = L0KVOChangeKind(change);
 	
