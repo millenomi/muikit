@@ -197,4 +197,50 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 	}
 }
 
+#if __BLOCKS__
+- (void) forEachArrayChange:(NSDictionary*) change invokeBlockForInsertion:(L0KVODispatcherArrayChangeBlock) insertion removal:(L0KVODispatcherArrayChangeBlock) removal replacement:(L0KVODispatcherArrayReplacementBlock) replacement;
+{
+	NSKeyValueChange changeKind = L0KVOChangeKind(change);
+	
+	NSIndexSet* indexes = L0KVOChangedIndexes(change);
+	
+	NSUInteger arrayIndex = [indexes firstIndex], changeIndex = 0;
+	NSArray* insertions = (changeKind == NSKeyValueChangeRemoval)? nil : L0KVOChangedValue(change);
+	NSArray* removals = (changeKind == NSKeyValueChangeInsertion)? nil : L0KVOPreviousValue(change);
+	
+	while (arrayIndex != NSNotFound) {		
+		id insertedObject = [insertions objectAtIndex:changeIndex];
+		id removedObject = [removals objectAtIndex:changeIndex];
+		
+		if (changeKind == NSKeyValueChangeRemoval || (changeKind == NSKeyValueChangeReplacement && !replacement))
+			removal(removedObject, arrayIndex);			
+		
+		if (changeKind == NSKeyValueChangeInsertion || (changeKind == NSKeyValueChangeReplacement && !replacement))
+			insertion(removedObject, arrayIndex);
+		
+		if (changeKind == NSKeyValueChangeReplacement && replacement)
+			replacement(removedObject, insertedObject, arrayIndex);
+		
+		arrayIndex = [indexes indexGreaterThanIndex:arrayIndex];
+		changeIndex++;
+	}	
+}
+
+- (void) forEachSetChange:(NSDictionary*) change invokeBlockForInsertion:(L0KVODispatcherArrayChangeBlock) insertion removal:(L0KVODispatcherArrayChangeBlock) removal;
+{
+	NSKeyValueChange changeKind = L0KVOChangeKind(change);
+	
+	NSSet* insertions = (changeKind == NSKeyValueChangeRemoval)? nil : L0KVOChangedValue(change);
+	NSSet* removals = (changeKind == NSKeyValueChangeInsertion)? nil : L0KVOPreviousValue(change);
+	
+	for (id removedObject in removals) {
+		removal(removedObject);
+	}
+	
+	for (id insertedObject in insertions) {
+		insertion(insertedObject);
+	}	
+}
+#endif
+
 @end

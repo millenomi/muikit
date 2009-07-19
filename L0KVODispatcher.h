@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+#ifdef __BLOCKS__
+// Please note -- since these are meant to be called in a KVO observation notification
+// method, it is assumed you can exploit its closure to have a reference to the source object,
+// so it isn't passed back as it happens in the selector-based variant.
+
+typedef void (^L0KVODispatcherArrayChangeBlock)(id object, NSUInteger index);
+typedef void (^L0KVODispatcherArrayReplacementBlock)(id oldObject, id newObject, NSUInteger index);
+typedef void (^L0KVODispatcherSetChangeBlock)(id object);
+#endif
+
 
 @interface L0KVODispatcher : NSObject {
 	id target;
@@ -26,6 +36,8 @@
 // this responsibility to our clients and provide only the dispatch code.
 // To use, observe a key path with observe:... above, then in the selector call -forEachArrayChange:...
 // or -forEachSetChange:... to invoke the selectors for each object that was inserted, removed or replaced.
+// Pass in the change dictionary and the object. Can also be used elsewhere if you have a KVO change dictionary
+// to dispatch.
 
 // insertion =>   - (void) inArrayOfObject:(id) o inserted:(id) i atIndex:(NSUInteger) idx;
 // removal =>     - (void) inArrayOfObject:(id) o removed:(id) i atIndex:(NSUInteger) idx;
@@ -37,6 +49,13 @@
 // removal =>     - (void) inArrayOfObject:(id) o removed:(id) i;
 // Replacement mutations are always reported as removal of all old objects, followed by insertion of all new ones.
 - (void) forEachSetChange:(NSDictionary*) change forObject:(id) o invokeSelectorForInsertion:(SEL) insertion removal:(SEL) removal;
+
+#if __BLOCKS__
+// Blocks-based versions of the above.
+- (void) forEachArrayChange:(NSDictionary*) change invokeBlockForInsertion:(L0KVODispatcherArrayChangeBlock) insertion removal:(L0KVODispatcherArrayChangeBlock) removal replacement:(L0KVODispatcherArrayReplacementBlock) replacement;
+
+- (void) forEachSetChange:(NSDictionary*) change invokeBlockForInsertion:(L0KVODispatcherArrayChangeBlock) insertion removal:(L0KVODispatcherArrayChangeBlock) removal;
+#endif
 
 // Ends observing a key path whose observation started with observe:..., observeArray:... or observeSet:...
 // Note that deallocating the dispatcher will automatically remove all observation registrations.
