@@ -146,7 +146,7 @@
 		1518EF551010B69D009C334E /* L0KVODispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0KVODispatcher.m; sourceTree = "<group>"; };
 		153B7FDF0FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+L0NetworkIndicator.h"; sourceTree = "<group>"; };
 		153B7FE00FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+L0NetworkIndicator.m"; sourceTree = "<group>"; };
-		154635591011BD77000238EE /* MuiKit+Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "MuiKit+Test.octest"; path = "Build/Debug/MuiKit+Test.octest"; sourceTree = "<group>"; };
+		154635591011BD77000238EE /* MuiKit+Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MuiKit+Test.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1546355A1011BD77000238EE /* MuiKit+Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MuiKit+Test-Info.plist"; sourceTree = "<group>"; };
 		154635761011BDAE000238EE /* L0KVODispatcher+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "L0KVODispatcher+Test.m"; sourceTree = "<group>"; };
 		154635AE1011C13A000238EE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
