@@ -86,6 +86,8 @@
 		15C0401410110ECB0090B009 /* NSURL+L0URLResolvingRedirects.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C0401210110ECB0090B009 /* NSURL+L0URLResolvingRedirects.m */; };
 		15C04047101114A30090B009 /* NSURL+L0URLResolvingRedirects.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15C0401110110ECB0090B009 /* NSURL+L0URLResolvingRedirects.h */; };
 		15C0C1680FDFD03B005A75B6 /* L0KVODictionaryAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15C0C1540FDFCF22005A75B6 /* L0KVODictionaryAdditions.h */; };
+		15C97855103C863900BA4071 /* NSData+L0IPAddressTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C97853103C863900BA4071 /* NSData+L0IPAddressTools.m */; };
+		15C9785A103C8D0600BA4071 /* NSData+L0IPAddressTools.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15C97852103C863900BA4071 /* NSData+L0IPAddressTools.h */; };
 		15FD32410FB9600000EB8ED5 /* L0ActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD323F0FB9600000EB8ED5 /* L0ActionSheet.m */; };
 		15FD32420FB9600400EB8ED5 /* L0ActionSheet.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15FD323E0FB9600000EB8ED5 /* L0ActionSheet.h */; };
 /* End PBXBuildFile section */
@@ -136,6 +138,7 @@
 				153B7FE40FF2054D00DDFD16 /* UIApplication+L0NetworkIndicator.h in CopyFiles */,
 				1518EF581010B6A5009C334E /* L0KVODispatcher.h in CopyFiles */,
 				15C04047101114A30090B009 /* NSURL+L0URLResolvingRedirects.h in CopyFiles */,
+				15C9785A103C8D0600BA4071 /* NSData+L0IPAddressTools.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +185,8 @@
 		15C0401110110ECB0090B009 /* NSURL+L0URLResolvingRedirects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+L0URLResolvingRedirects.h"; sourceTree = "<group>"; };
 		15C0401210110ECB0090B009 /* NSURL+L0URLResolvingRedirects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+L0URLResolvingRedirects.m"; sourceTree = "<group>"; };
 		15C0C1540FDFCF22005A75B6 /* L0KVODictionaryAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0KVODictionaryAdditions.h; sourceTree = "<group>"; };
+		15C97852103C863900BA4071 /* NSData+L0IPAddressTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+L0IPAddressTools.h"; sourceTree = "<group>"; };
+		15C97853103C863900BA4071 /* NSData+L0IPAddressTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+L0IPAddressTools.m"; sourceTree = "<group>"; };
 		15FD323E0FB9600000EB8ED5 /* L0ActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0ActionSheet.h; sourceTree = "<group>"; };
 		15FD323F0FB9600000EB8ED5 /* L0ActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0ActionSheet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -250,6 +255,7 @@
 		154B02100F78163C0082109B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				15C97851103C861900BA4071 /* IP address management */,
 				15C0C1530FDFCEF1005A75B6 /* KVO Additions */,
 				15AF56390FBAAE9A00BE7F71 /* URL Handling */,
 				15FD32440FB9600A00EB8ED5 /* Action Sheet with Identifiers */,
@@ -370,6 +376,15 @@
 				1518EF551010B69D009C334E /* L0KVODispatcher.m */,
 			);
 			name = "KVO Additions";
+			sourceTree = "<group>";
+		};
+		15C97851103C861900BA4071 /* IP address management */ = {
+			isa = PBXGroup;
+			children = (
+				15C97852103C863900BA4071 /* NSData+L0IPAddressTools.h */,
+				15C97853103C863900BA4071 /* NSData+L0IPAddressTools.m */,
+			);
+			name = "IP address management";
 			sourceTree = "<group>";
 		};
 		15FD32440FB9600A00EB8ED5 /* Action Sheet with Identifiers */ = {
@@ -557,6 +572,7 @@
 				153B7FE20FF2049300DDFD16 /* UIApplication+L0NetworkIndicator.m in Sources */,
 				1518EF571010B69D009C334E /* L0KVODispatcher.m in Sources */,
 				15C0401410110ECB0090B009 /* NSURL+L0URLResolvingRedirects.m in Sources */,
+				15C97855103C863900BA4071 /* NSData+L0IPAddressTools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
