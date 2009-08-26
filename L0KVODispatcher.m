@@ -76,7 +76,6 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 {
 	NSValue* ptr = [NSValue valueWithNonretainedObject:object];
 	NSMutableDictionary* selectorsByKeyPath = [selectorsByKeyPathsAndObjects objectForKey:ptr];
-	NSString* selectorString = [selectorsByKeyPath objectForKey:keyPath];
 
 	[selectorsByKeyPath removeObjectForKey:keyPath];
 	if ([selectorsByKeyPath count] == 0)
