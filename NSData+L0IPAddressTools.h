@@ -17,6 +17,7 @@ typedef NSInteger L0IPAddressVersion;
 @interface NSData (L0IPAddressTools)
 
 - (BOOL) socketAddressIsIPAddressOfVersion:(L0IPAddressVersion) v;
+- (BOOL) socketAddressIsEqualToAddress:(NSData*) d;
 - (NSString*) socketAddressStringValue;
 
 @end

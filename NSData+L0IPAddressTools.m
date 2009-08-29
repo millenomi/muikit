@@ -12,7 +12,31 @@
 #import <netinet/in.h>
 #import <arpa/inet.h>
 
+#define L0IPv6AddressIsEqual(a, b) (\
+(a).__u6_addr.__u6_addr32[0] == (b).__u6_addr.__u6_addr32[0] && \
+(a).__u6_addr.__u6_addr32[1] == (b).__u6_addr.__u6_addr32[1] && \
+(a).__u6_addr.__u6_addr32[2] == (b).__u6_addr.__u6_addr32[2] && \
+(a).__u6_addr.__u6_addr32[3] == (b).__u6_addr.__u6_addr32[3])
+
 @implementation NSData (L0IPAddressTools)
+
+- (BOOL) socketAddressIsEqualToAddress:(NSData*) d;
+{
+	const struct sockaddr* s = [d bytes];
+	if ([d socketAddressIsIPAddressOfVersion:kL0IPAddressVersion4] && [self socketAddressIsIPAddressOfVersion:kL0IPAddressVersion4]) {
+		const struct sockaddr_in* sIPv4 = (const struct sockaddr_in*) s;
+		const struct sockaddr_in* selfIPv4 = (const struct sockaddr_in*) [self bytes];
+		if (selfIPv4->sin_addr.s_addr == sIPv4->sin_addr.s_addr)
+			return YES;
+	} else if ([d socketAddressIsIPAddressOfVersion:kL0IPAddressVersion6] && [self socketAddressIsIPAddressOfVersion:kL0IPAddressVersion6]) {
+		const struct sockaddr_in6* sIPv6 = (const struct sockaddr_in6*) s;
+		const struct sockaddr_in6* selfIPv6 = (const struct sockaddr_in6*) [self bytes];
+		if (L0IPv6AddressIsEqual(selfIPv6->sin6_addr, sIPv6->sin6_addr))
+			return YES;
+	}
+	
+	return NO;
+}
 
 - (BOOL) socketAddressIsIPAddressOfVersion:(L0IPAddressVersion) v;
 {
