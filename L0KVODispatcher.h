@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 #ifdef __BLOCKS__
+
+typedef void (^L0KVODispatcherChangeBlock)(id object, NSDictionary* change);
+
 // Please note -- since these are meant to be called in a KVO observation notification
 // method, it is assumed you can exploit its closure to have a reference to the source object,
 // so it isn't passed back as it happens in the selector-based variant.
@@ -21,7 +24,7 @@ typedef void (^L0KVODispatcherSetChangeBlock)(id object);
 
 @interface L0KVODispatcher : NSObject {
 	id target;
-	NSMutableDictionary* selectorsByKeyPathsAndObjects;	
+	NSMutableDictionary* selectorsByKeyPathsAndObjects;
 }
 
 - (id) initWithTarget:(id) target;
@@ -31,6 +34,12 @@ typedef void (^L0KVODispatcherSetChangeBlock)(id object);
 // The change dictionary is the same one that KVO would have reported
 // in observeValueForKeyPath:ofObject:change:context:.
 - (void) observe:(NSString*) keyPath ofObject:(id) object usingSelector:(SEL) selector options:(NSKeyValueObservingOptions) options;
+
+#if __BLOCKS__
+// As above, but uses a block for dispatch.
+
+- (void) observe:(NSString*) keyPath ofObject:(id) object options:(NSKeyValueObservingOptions) options usingBlock:(L0KVODispatcherChangeBlock) block;
+#endif
 
 // We could keep track of the required selectors ourselves, but it's long stuff, so we offload
 // this responsibility to our clients and provide only the dispatch code.

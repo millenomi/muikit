@@ -11,6 +11,13 @@
 
 L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 
+@interface L0KVODispatcher ()
+
+- (void) observe:(NSString *)keyPath ofObject:(id)object usingSelectorStringOrBlock:(id)selectorStringOrBlock options:(NSKeyValueObservingOptions)options;
+
+@end
+
+
 @implementation L0KVODispatcher
 
 - (id) initWithTarget:(id) t;
@@ -41,24 +48,34 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 
 - (void) observe:(NSString*) keyPath ofObject:(id) object usingSelector:(SEL) selector options:(NSKeyValueObservingOptions) options;
 {
+	[self observe:keyPath ofObject:object usingSelectorStringOrBlock:NSStringFromSelector(selector) options:options];
+}
+
+- (void) observe:(NSString *)keyPath ofObject:(id)object usingSelectorStringOrBlock:(id)selectorStringOrBlock options:(NSKeyValueObservingOptions)options;
+{
 	NSValue* ptr = [NSValue valueWithNonretainedObject:object];
 	NSMutableDictionary* selectorsByKeyPath = [selectorsByKeyPathsAndObjects objectForKey:ptr];
 	NSString* selectorString = [selectorsByKeyPath objectForKey:keyPath];
-	
 	
 	if (!selectorsByKeyPath) {
 		selectorsByKeyPath = [NSMutableDictionary dictionary];
 		[selectorsByKeyPathsAndObjects setObject:selectorsByKeyPath forKey:ptr];
 	}
-
+	
 	BOOL alreadyRegistered = (selectorString != nil);
-
-	selectorString = NSStringFromSelector(selector);		
-	[selectorsByKeyPath setObject:selectorString forKey:keyPath];
-		
+	
+	[selectorsByKeyPath setObject:selectorStringOrBlock forKey:keyPath];
+	
 	if (!alreadyRegistered)
-		[object addObserver:self forKeyPath:keyPath options:options context:(void*) kL0MicroBindingsObservingContext];
+		[object addObserver:self forKeyPath:keyPath options:options context:(void*) kL0MicroBindingsObservingContext];	
 }
+
+#if __BLOCKS__
+- (void) observe:(NSString*) keyPath ofObject:(id) object options:(NSKeyValueObservingOptions) options usingBlock:(L0KVODispatcherChangeBlock) block;
+{
+	[self observe:keyPath ofObject:object usingSelectorStringOrBlock:[[block copy] autorelease] options:options];
+}
+#endif
 
 - (void) observeValueForKeyPath:(NSString*) keyPath ofObject:(id) object change:(NSDictionary*) change context:(void*) context;
 {
@@ -66,10 +83,16 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 	
 	NSValue* ptr = [NSValue valueWithNonretainedObject:object];
 	NSMutableDictionary* selectorsByKeyPath = [selectorsByKeyPathsAndObjects objectForKey:ptr];
-	NSString* selectorString = [selectorsByKeyPath objectForKey:keyPath];
+	id selectorStringOrBlock = [selectorsByKeyPath objectForKey:keyPath];
 
-	if (selectorString)
-		[target performSelector:NSSelectorFromString(selectorString) withObject:object withObject:change];
+	if (selectorStringOrBlock) {
+#if __BLOCKS__
+		if (![selectorStringOrBlock isKindOfClass:[NSString class]]) {
+			((L0KVODispatcherChangeBlock)selectorStringOrBlock)(object, change);
+		} else
+#endif
+		[target performSelector:NSSelectorFromString(selectorStringOrBlock) withObject:object withObject:change];
+	}
 }
 
 - (void) endObserving:(NSString*) keyPath ofObject:(id) object;
