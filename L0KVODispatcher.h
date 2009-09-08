@@ -33,6 +33,8 @@ typedef void (^L0KVODispatcherSetChangeBlock)(id object);
 // The selector must be of the form - (void) keyOfObject:(id) object changed:(NSDictionary*) change;
 // The change dictionary is the same one that KVO would have reported
 // in observeValueForKeyPath:ofObject:change:context:.
+// Note that the KVO dispatcher does not retain the passed-in object. It's your responsibility to make
+// sure it's kept alive for as long as needed.
 - (void) observe:(NSString*) keyPath ofObject:(id) object usingSelector:(SEL) selector options:(NSKeyValueObservingOptions) options;
 
 #if __BLOCKS__
@@ -68,6 +70,8 @@ typedef void (^L0KVODispatcherSetChangeBlock)(id object);
 
 // Ends observing a key path whose observation started with observe:..., observeArray:... or observeSet:...
 // Note that deallocating the dispatcher will automatically remove all observation registrations.
+// Also note that unlike NSObject's removeObserver:... method, this method can safely be called to
+// no effect in case you were not observing that key path on the object.
 - (void) endObserving:(NSString*) keyPath ofObject:(id) object;
 
 @end
