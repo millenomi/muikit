@@ -25,7 +25,6 @@ typedef void (^L0KVODispatcherSetChangeBlock)(id object);
 @interface L0KVODispatcher : NSObject {
 	id target;
 	NSMutableDictionary* selectorsByKeyPathsAndObjects;
-	BOOL isAdding, didRemoveWhileAdding;
 }
 
 - (id) initWithTarget:(id) target;
@@ -36,11 +35,14 @@ typedef void (^L0KVODispatcherSetChangeBlock)(id object);
 // in observeValueForKeyPath:ofObject:change:context:.
 // Note that the KVO dispatcher does not retain the passed-in object. It's your responsibility to make
 // sure it's kept alive for as long as needed.
+
+// IMPLEMENTATION NOTE: L0KVODispatcher does NOT support altering the dispatcher's state while this method is being called. This might happen if options includes NSKeyValueObservingOptionInitial.
+// IF YOU USE THIS FLAG, THE SELECTOR *MUST NOT* MAKE ANY CALL ON THE DISPATCHER BEFORE RETURNING. BEHAVIOR IN THIS CASE IS UNDEFINED.
 - (void) observe:(NSString*) keyPath ofObject:(id) object usingSelector:(SEL) selector options:(NSKeyValueObservingOptions) options;
 
 #if __BLOCKS__
 // As above, but uses a block for dispatch.
-
+// The same caveats apply for NSKeyValueObservingOptionInitial.
 - (void) observe:(NSString*) keyPath ofObject:(id) object options:(NSKeyValueObservingOptions) options usingBlock:(L0KVODispatcherChangeBlock) block;
 #endif
 

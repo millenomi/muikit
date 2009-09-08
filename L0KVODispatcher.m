@@ -58,6 +58,8 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 
 - (void) observe:(NSString *)keyPath ofObject:(id)object usingSelectorStringOrBlock:(id)selectorStringOrBlock options:(NSKeyValueObservingOptions)options;
 {	
+	L0LogDebugIf((options & NSKeyValueObservingOptionInitial), @"Reminder: Do not alter the state of the dispatcher on callbacks that are called with NSKeyValueObservingOptionInitial!");
+	
 	NSValue* ptr = [NSValue valueWithNonretainedObject:object];
 	NSMutableDictionary* selectorsByKeyPath = [selectorsByKeyPathsAndObjects objectForKey:ptr];
 	NSString* previousSelector = [selectorsByKeyPath objectForKey:keyPath];
@@ -73,15 +75,9 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 	
 	[selectorsByKeyPath setObject:selectorStringOrBlock forKey:keyPath];
 
-	isAdding = YES; didRemoveWhileAdding = NO;
 	[object addObserver:self forKeyPath:keyPath options:options context:(void*) kL0MicroBindingsObservingContext];
 	
-	if (didRemoveWhileAdding) {
-		[object removeObserver:self forKeyPath:keyPath];
-		L0Log(@"%@ -- while trying to watch (a %@).%@ using %@, during the initial notification, we got a removal request. Ick! We autoremoved as part of observe:ofObject:...", self, [object class], keyPath, selectorStringOrBlock);
-	} else {
-		L0Log(@"%@ -- watching (a %@).%@ using %@", self, [object class], keyPath, selectorStringOrBlock);
-	}
+	L0Log(@"%@ -- watching (a %@).%@ using %@", self, [object class], keyPath, selectorStringOrBlock);
 }
 
 #if __BLOCKS__
@@ -111,12 +107,6 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 
 - (void) endObserving:(NSString*) keyPath ofObject:(id) object;
 {
-	// workaround: if called during addObserver:..., just notify observe:... above that we are to be removed ASAP.
-	if (isAdding) {
-		didRemoveWhileAdding = YES;
-		return;
-	}
-	
 	NSValue* ptr = [NSValue valueWithNonretainedObject:object];
 	NSMutableDictionary* selectorsByKeyPath = [selectorsByKeyPathsAndObjects objectForKey:ptr];
 
