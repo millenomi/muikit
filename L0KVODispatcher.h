@@ -25,6 +25,7 @@ typedef void (^L0KVODispatcherSetChangeBlock)(id object);
 @interface L0KVODispatcher : NSObject {
 	id target;
 	NSMutableDictionary* selectorsByKeyPathsAndObjects;
+	BOOL isAdding, didRemoveWhileAdding;
 }
 
 - (id) initWithTarget:(id) target;

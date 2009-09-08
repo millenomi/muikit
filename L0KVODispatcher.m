@@ -43,6 +43,11 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 	[super dealloc];
 }
 
+- description;
+{
+	return [NSString stringWithFormat:@"%@ { target = %@ }", [super description], target];
+}
+
 #pragma mark -
 #pragma mark Observation
 
@@ -52,22 +57,31 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 }
 
 - (void) observe:(NSString *)keyPath ofObject:(id)object usingSelectorStringOrBlock:(id)selectorStringOrBlock options:(NSKeyValueObservingOptions)options;
-{
+{	
 	NSValue* ptr = [NSValue valueWithNonretainedObject:object];
 	NSMutableDictionary* selectorsByKeyPath = [selectorsByKeyPathsAndObjects objectForKey:ptr];
-	NSString* selectorString = [selectorsByKeyPath objectForKey:keyPath];
+	NSString* previousSelector = [selectorsByKeyPath objectForKey:keyPath];
 	
 	if (!selectorsByKeyPath) {
 		selectorsByKeyPath = [NSMutableDictionary dictionary];
 		[selectorsByKeyPathsAndObjects setObject:selectorsByKeyPath forKey:ptr];
 	}
 	
-	BOOL alreadyRegistered = (selectorString != nil);
+	BOOL alreadyRegistered = (previousSelector != nil) && ![previousSelector isEqual:selectorStringOrBlock];
+	
+	NSAssert(!alreadyRegistered, @"Should not be observing with a different selector string");
 	
 	[selectorsByKeyPath setObject:selectorStringOrBlock forKey:keyPath];
+
+	isAdding = YES; didRemoveWhileAdding = NO;
+	[object addObserver:self forKeyPath:keyPath options:options context:(void*) kL0MicroBindingsObservingContext];
 	
-	if (!alreadyRegistered)
-		[object addObserver:self forKeyPath:keyPath options:options context:(void*) kL0MicroBindingsObservingContext];	
+	if (didRemoveWhileAdding) {
+		[object removeObserver:self forKeyPath:keyPath];
+		L0Log(@"%@ -- while trying to watch (a %@).%@ using %@, during the initial notification, we got a removal request. Ick! We autoremoved as part of observe:ofObject:...", self, [object class], keyPath, selectorStringOrBlock);
+	} else {
+		L0Log(@"%@ -- watching (a %@).%@ using %@", self, [object class], keyPath, selectorStringOrBlock);
+	}
 }
 
 #if __BLOCKS__
@@ -97,10 +111,18 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 
 - (void) endObserving:(NSString*) keyPath ofObject:(id) object;
 {
+	// workaround: if called during addObserver:..., just notify observe:... above that we are to be removed ASAP.
+	if (isAdding) {
+		didRemoveWhileAdding = YES;
+		return;
+	}
+	
 	NSValue* ptr = [NSValue valueWithNonretainedObject:object];
 	NSMutableDictionary* selectorsByKeyPath = [selectorsByKeyPathsAndObjects objectForKey:ptr];
 
 	if ([selectorsByKeyPath objectForKey:keyPath]) {
+		L0Log(@"%@ stopping observation of (a %@).%@", self, [object class], keyPath);
+		
 		[selectorsByKeyPath removeObjectForKey:keyPath];
 		if ([selectorsByKeyPath count] == 0)
 			[selectorsByKeyPathsAndObjects removeObjectForKey:ptr];
