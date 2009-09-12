@@ -6,6 +6,8 @@
 //  Copyright 2009 Emanuele Vulcano. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+
 #import <UIKit/UIKit.h>
 
 @protocol L0DraggableViewDelegate;
@@ -154,3 +156,5 @@
 - (void) draggableView:(L0DraggableView*) view didEndAttractionByFinishing:(BOOL) finished;
 
 @end
+
+#endif

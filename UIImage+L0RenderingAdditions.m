@@ -6,6 +6,8 @@
 //  Copyright Emanuele Vulcano 2008. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+
 #import "UIImage+L0RenderingAdditions.h"
 
 // Original code from badpirate at
@@ -130,3 +132,5 @@ static UIImage* L0ScaleAndRotateImage(UIImage* image, CGFloat maxResolution)
 }
 
 @end
+
+#endif

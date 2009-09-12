@@ -6,6 +6,8 @@
 //  Copyright 2009 Emanuele Vulcano. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+
 #import "L0FlipViewController.h"
 
 @interface L0FlipViewController ()
@@ -131,3 +133,5 @@
 }
 
 @end
+
+#endif

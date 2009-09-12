@@ -6,8 +6,9 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#if TARGET_OS_IPHONE
 
+#import <UIKit/UIKit.h>
 
 @interface L0ActionSheet : UIActionSheet {
 	NSMutableArray* buttonIdentifiers;
@@ -20,3 +21,5 @@
 // Also a generic KVO container.
 
 @end
+
+#endif

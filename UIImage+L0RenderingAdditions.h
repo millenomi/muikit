@@ -6,6 +6,8 @@
 //  Copyright Emanuele Vulcano 2008. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+
 #import <UIKit/UIKit.h>
 
 static inline CGSize L0SizeFromSizeNotLargerThan(CGSize r, CGSize maximum) {
@@ -44,3 +46,5 @@ static inline CGSize L0SizeFromSizeNotLargerThan(CGSize r, CGSize maximum) {
 - (UIImage*) imageByRenderingRotation;
 
 @end
+
+#endif

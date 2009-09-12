@@ -6,6 +6,8 @@
 //  Copyright 2009 Emanuele Vulcano. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+
 #import "L0DraggableView.h"
 
 static inline BOOL L0VectorHasPointWithinAbsolute(CGPoint vector, CGFloat rangeAbs) {
@@ -481,3 +483,5 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 }
 
 @end
+
+#endif

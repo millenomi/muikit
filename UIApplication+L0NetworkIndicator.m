@@ -6,6 +6,8 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+
 #import "UIApplication+L0NetworkIndicator.h"
 
 
@@ -29,3 +31,5 @@ static int L0NumberOfNetworkUsers = 0;
 }
 
 @end
+
+#endif

@@ -6,7 +6,9 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if TARGET_OS_IPHONE
+
+#import <UIKit/UIKit.h>
 
 enum {
 	kL0DeviceFamily_iPhone = 0,
@@ -19,3 +21,5 @@ typedef NSUInteger L0DeviceFamily;
 @property(readonly) L0DeviceFamily deviceFamily;
 
 @end
+
+#endif

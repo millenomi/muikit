@@ -6,6 +6,8 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+
 #import "L0ActionSheet.h"
 
 
@@ -69,3 +71,5 @@
 }
 
 @end
+
+#endif

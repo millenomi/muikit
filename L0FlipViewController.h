@@ -6,6 +6,8 @@
 //  Copyright 2009 Emanuele Vulcano. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+
 #import <UIKit/UIKit.h>
 
 @interface L0FlipViewController : UIViewController {
@@ -32,3 +34,5 @@
 - (IBAction) showBack;
 
 @end
+
+#endif

@@ -6,8 +6,9 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "UIDevice+L0ModelDetection.h"
+#if TARGET_OS_IPHONE
 
+#import "UIDevice+L0ModelDetection.h"
 
 @implementation UIDevice (L0ModelDetection)
 
@@ -20,3 +21,5 @@
 }
 
 @end
+
+#endif
