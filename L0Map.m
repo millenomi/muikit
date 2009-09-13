@@ -87,10 +87,10 @@
 - (void) getEnumeratorForKeys:(NSEnumerator**) keysEnu values:(NSEnumerator**) valuesEnu;
 {
 	NSUInteger c = [self count];
-	void* values = malloc(c * sizeof(void*));
-	void* keys = malloc(c * sizeof(void*));
+	void** values = malloc(c * sizeof(void*));
+	void** keys = malloc(c * sizeof(void*));
 	
-	[self getKeys:&keys values:&values];
+	[self getKeys:keys values:values];
 	
 	if (keysEnu) {
 		NSArray* a = [NSArray arrayWithObjects:(const id*) keys count:c];
@@ -102,8 +102,8 @@
 		*valuesEnu = [a objectEnumerator];
 	}
 	
-	free(values);
 	free(keys);
+	free(values);
 }
 
 - (NSEnumerator*) allValues;
