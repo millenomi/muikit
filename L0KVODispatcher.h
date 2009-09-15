@@ -25,6 +25,8 @@ typedef void (^L0KVODispatcherSetChangeBlock)(id object);
 @interface L0KVODispatcher : NSObject {
 	id target;
 	NSMutableDictionary* selectorsByKeyPathsAndObjects;
+	
+	int addingReentryCount;
 }
 
 - (id) initWithTarget:(id) target;

@@ -9,13 +9,19 @@
 #import "L0KVODispatcher.h"
 #import "L0KVODictionaryAdditions.h"
 
-L0UniquePointerConstant(kL0MicroBindingsObservingContext);
+L0UniquePointerConstant(kL0KVODispatcherObservingContext);
 
 @interface L0KVODispatcher ()
 
 - (void) observe:(NSString *)keyPath ofObject:(id)object usingSelectorStringOrBlock:(id)selectorStringOrBlock options:(NSKeyValueObservingOptions)options;
 
 @end
+
+void L0KVODispatcherNoteEndReentry(id object, NSString* keyPath)
+{
+	
+	L0LogAlways(@"Owch. This shouldn't have happened: endObserving:'%@' ofObject:%@ was called during an observe:... call. It can happen if you use NSKeyValueObservingOptionInitial. Fixing this is nontrivial and you should really really REALLY refactor your code to check the initial condition instead, or remove KVO dispatcher state changes in this callback.\nAs a convenient workaround, I have enqueued an end-observing call on the run loop which should work, but bizarreness is always around the corner. PS: break on L0KVODispatcherNoteEndReentry() to debug.", keyPath, object);
+}
 
 
 @implementation L0KVODispatcher
@@ -58,8 +64,6 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 
 - (void) observe:(NSString *)keyPath ofObject:(id)object usingSelectorStringOrBlock:(id)selectorStringOrBlock options:(NSKeyValueObservingOptions)options;
 {	
-	L0LogDebugIf((options & NSKeyValueObservingOptionInitial), @"Reminder: Do not alter the state of the dispatcher on callbacks that are called with NSKeyValueObservingOptionInitial!");
-	
 	NSValue* ptr = [NSValue valueWithNonretainedObject:object];
 	NSMutableDictionary* selectorsByKeyPath = [selectorsByKeyPathsAndObjects objectForKey:ptr];
 	NSString* previousSelector = [selectorsByKeyPath objectForKey:keyPath];
@@ -73,9 +77,11 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 	
 	NSAssert(!alreadyRegistered, @"Should not be observing with a different selector string");
 	
-	[selectorsByKeyPath setObject:selectorStringOrBlock forKey:keyPath];
+	[selectorsByKeyPath setObject:[[selectorStringOrBlock copy] autorelease] forKey:keyPath];
 
-	[object addObserver:self forKeyPath:keyPath options:options context:(void*) kL0MicroBindingsObservingContext];
+	addingReentryCount++;
+	[object addObserver:self forKeyPath:keyPath options:options context:(void*) kL0KVODispatcherObservingContext];
+	addingReentryCount--;
 	
 	L0Log(@"%@ -- watching (a %@).%@ using %@", self, [object class], keyPath, selectorStringOrBlock);
 }
@@ -89,7 +95,7 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 
 - (void) observeValueForKeyPath:(NSString*) keyPath ofObject:(id) object change:(NSDictionary*) change context:(void*) context;
 {
-	if (context != kL0MicroBindingsObservingContext) return;
+	if (context != kL0KVODispatcherObservingContext) return;
 	
 	NSValue* ptr = [NSValue valueWithNonretainedObject:object];
 	NSMutableDictionary* selectorsByKeyPath = [selectorsByKeyPathsAndObjects objectForKey:ptr];
@@ -105,8 +111,19 @@ L0UniquePointerConstant(kL0MicroBindingsObservingContext);
 	}
 }
 
+- (void) endObservingObjectAndKeyPath:(NSArray*) objectAndKeyPath;
+{
+	[self endObserving:[objectAndKeyPath objectAtIndex:0] ofObject:[objectAndKeyPath objectAtIndex:1]];
+}
+
 - (void) endObserving:(NSString*) keyPath ofObject:(id) object;
 {
+	if (addingReentryCount > 0) {
+		[self performSelector:@selector(endObservingObjectAndKeyPath:) withObject:[NSArray arrayWithObjects:object, keyPath, nil] afterDelay:0.01];
+		L0KVODispatcherNoteEndReentry(object, keyPath);
+		return;
+	}
+	
 	NSValue* ptr = [NSValue valueWithNonretainedObject:object];
 	NSMutableDictionary* selectorsByKeyPath = [selectorsByKeyPathsAndObjects objectForKey:ptr];
 
