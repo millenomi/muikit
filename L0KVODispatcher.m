@@ -286,13 +286,19 @@ void L0KVODispatcherNoteEndReentry(id object, NSString* keyPath)
 	NSSet* insertions = (changeKind == NSKeyValueChangeRemoval)? nil : L0KVOChangedValue(change);
 	NSSet* removals = (changeKind == NSKeyValueChangeInsertion)? nil : L0KVOPreviousValue(change);
 	
-	for (id removedObject in removals) {
-		removal(removedObject);
-	}
+	if ([removals conformsToProtocol:@protocol(NSFastEnumeration)]) {
+		for (id removedObject in removals) {
+			removal(removedObject);
+		}
+	} else if (removals && ![removals isKindOfClass:[NSNull class]])
+		removal(removals);
 	
-	for (id insertedObject in insertions) {
-		insertion(insertedObject);
-	}	
+	if ([insertions conformsToProtocol:@protocol(NSFastEnumeration)]) {
+		for (id insertedObject in insertions) {
+			insertion(insertedObject);
+		}	
+	} else if (insertions && ![insertions isKindOfClass:[NSNull class]])
+		insertion(insertions);
 }
 #endif
 
