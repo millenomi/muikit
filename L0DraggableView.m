@@ -461,7 +461,7 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 
 - (void) _slideAnimation:(NSString*) name didEndByFinishing:(BOOL) finished context:(void*) nothing;
 {
-	L0Log(@"%@, finished = %d", self, finished);
+	L0Log(@"finished? = %d", finished);
 	
 	if (delegate && [delegate respondsToSelector:@selector(draggableView:didEndInertialSlideByFinishing:)])
 		[delegate draggableView:self didEndInertialSlideByFinishing:finished];
@@ -469,7 +469,7 @@ static inline CGFloat L0ClampToMinimumAbsolute(CGFloat value, CGFloat maximumAbs
 
 - (void) _attractionAnimation:(NSString*) name didEndByFinishing:(BOOL) finished context:(void*) nothing;
 {
-	L0Log(@"%@, finished = %d", self, finished);
+	L0Log(@"finished? = %d", finished);
 	
 	if (delegate && [delegate respondsToSelector:@selector(draggableView:didEndAttractionByFinishing:)])
 		[delegate draggableView:self didEndAttractionByFinishing:finished];
