@@ -83,7 +83,7 @@ void L0KVODispatcherNoteEndReentry(id object, NSString* keyPath)
 	[object addObserver:self forKeyPath:keyPath options:options context:(void*) kL0KVODispatcherObservingContext];
 	addingReentryCount--;
 	
-	L0Log(@"%@ -- watching (a %@).%@ using %@", self, [object class], keyPath, selectorStringOrBlock);
+	L0Log(@"watching (a %@).%@ using %@", [object class], keyPath, selectorStringOrBlock);
 }
 
 #if __BLOCKS__
@@ -102,12 +102,17 @@ void L0KVODispatcherNoteEndReentry(id object, NSString* keyPath)
 	id selectorStringOrBlock = [selectorsByKeyPath objectForKey:keyPath];
 
 	if (selectorStringOrBlock) {
+		// Prevent the object from going out of scope soon.
+		[[object retain] autorelease];
+		
 #if __BLOCKS__
 		if (![selectorStringOrBlock isKindOfClass:[NSString class]]) {
 			((L0KVODispatcherChangeBlock)selectorStringOrBlock)(object, change);
 		} else
 #endif
-		[target performSelector:NSSelectorFromString(selectorStringOrBlock) withObject:object withObject:change];
+		{
+			[target performSelector:NSSelectorFromString(selectorStringOrBlock) withObject:object withObject:change];
+		}
 	}
 }
 
@@ -128,7 +133,7 @@ void L0KVODispatcherNoteEndReentry(id object, NSString* keyPath)
 	NSMutableDictionary* selectorsByKeyPath = [selectorsByKeyPathsAndObjects objectForKey:ptr];
 
 	if ([selectorsByKeyPath objectForKey:keyPath]) {
-		L0Log(@"%@ stopping observation of (a %@).%@", self, [object class], keyPath);
+		L0Log(@"stopping observation of (a %@).%@", [object class], keyPath);
 		
 		[selectorsByKeyPath removeObjectForKey:keyPath];
 		if ([selectorsByKeyPath count] == 0)
