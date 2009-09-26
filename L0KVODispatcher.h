@@ -80,3 +80,54 @@ typedef void (^L0KVODispatcherSetChangeBlock)(id object);
 - (void) endObserving:(NSString*) keyPath ofObject:(id) object;
 
 @end
+
+#if DEBUG
+
+/* DEBUG FACILITIES.
+ KVO is hairy and brittle and opaque and I shouldn't really have based a product around it so yeah.
+ L0KVODispatcher provides some debugging facilities to help fixing KVO trouble, especially someone-is-still-observing-on-dealloc KVO trouble.
+ These facilities are disabled by default. To enabled:
+ 
+  - Make sure the copy of MuiKit you're linking to has the preprocessor directive DEBUG=1 set -- this happens automatically if you embed MuiKit by referencing the project and you use the Debug build style.
+  - Do the following:
+   * Set the @"L0KVODispatcherShouldKeepTrackOfObservers" user defaults key to YES (via setBool:forKey: or similar).
+   AND/OR
+   * Start the app with the L0KVODispatcherShouldKeepTrackOfObservers environment variable set to YES.
+ 
+ Using the facilities yields arbitrary behavior if they're not on as specified above. Do not do that.
+ 
+ So, if KVO says object 0x1234 is being still observed during its dealloc, just break on NSKVODeallocateBreak(), then issue a
+	
+	(gdb) po [L0KVODispatcher observersOfObject:(id) 0x1234]
+
+ to see who's looking where they shouldn't. There, much better.
+ */
+
+@interface L0KVODispatcher (L0KVODispatcherDebugTools)
+
+// Returns YES if debug facilities are turned on.
++ (BOOL) shouldKeepTrackOfObservers;
+
+// Internal stuff used by the facilities.
+// You can call nonretainedObjectsToObservers to get a NSDictionary of NSDictionaries which specifies who's observing what, in the following way:
+// (NSValue with pointer to object being observed) => {
+//		(key path observed) => [ (dispatcher 1), (dispatcher 2) ... ],
+//		(key path observed 2) => [ (dispatcher a), (dispatcher b) ... ],
+// }, ...
++ nonretainedObjectsToObservers;
++ addObserver:(L0KVODispatcher*) d ofKeyPath:(NSString*) path ofObject:(id) o;
++ removeObserver:(L0KVODispatcher*) d ofKeyPath:(NSString*) path ofObject:(id) o;
+
+// IF debug facilities are on, you can break on these methods.
+- (void) willObserveKeyPath:(NSString*) kp ofObject:(id) o;
+- (void) didEndObservingKeyPath:(NSString*) kp ofObject:(id) o;
+
+// Returns a dictionary where the keys are key paths observed on object o, and the values are arrays of KVO dispatchers that are currently observing that key.
++ (NSDictionary*) observersOfObject:(id) o;
+
+// As per +observersOfObjects:, but returns just the array of dispatchers corresponding to the given key path.
++ (NSArray*) observersOfObject:(id) o keyPath:(NSString*) path;
+
+@end
+
+#endif

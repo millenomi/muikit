@@ -17,6 +17,7 @@ L0UniquePointerConstant(kL0KVODispatcherObservingContext);
 
 @end
 
+
 void L0KVODispatcherNoteEndReentry(id object, NSString* keyPath)
 {
 	
@@ -84,6 +85,9 @@ void L0KVODispatcherNoteEndReentry(id object, NSString* keyPath)
 	addingReentryCount--;
 	
 	L0Log(@"watching (a %@).%@ using %@", [object class], keyPath, selectorStringOrBlock);
+#if DEBUG
+	[self willObserveKeyPath:keyPath ofObject:object];
+#endif
 }
 
 #if __BLOCKS__
@@ -140,6 +144,11 @@ void L0KVODispatcherNoteEndReentry(id object, NSString* keyPath)
 			[selectorsByKeyPathsAndObjects removeObjectForKey:ptr];
 		
 		[object removeObserver:self forKeyPath:keyPath];
+
+#if DEBUG
+		[self didEndObservingKeyPath:keyPath ofObject:object];
+#endif		
+		
 	}
 }
 
@@ -308,3 +317,116 @@ void L0KVODispatcherNoteEndReentry(id object, NSString* keyPath)
 #endif
 
 @end
+
+#if DEBUG
+
+/* -- - -- DEBUG FACILITIES -- - -- */
+
+static NSMutableDictionary* nonretainedObjectsToObservers = nil;
+
+@implementation L0KVODispatcher (L0KVODispatcherDebugTools)
+
++ (BOOL) shouldKeepTrackOfObservers;
+{
+	static BOOL foundOut = NO, shouldKeepTrack;
+	
+	if (!foundOut) {
+		shouldKeepTrack = NO;
+		
+		if ([[NSUserDefaults standardUserDefaults] boolForKey:@"L0KVODispatcherShouldKeepTrackOfObservers"])
+			shouldKeepTrack = YES;
+		else {
+			char* envVar = getenv("L0KVODispatcherShouldKeepTrackOfObservers");
+			if (envVar && strcmp(envVar, "YES") == 0)
+				shouldKeepTrack = YES;
+		}
+		
+		if (shouldKeepTrack) {
+			L0LogAlways(@"\n\n!! WARNING !!\nL0KVODispatcher is now tracking all observations, which you can query using [L0KVODispatcher observersOfObject:...] and [L0KVODispatcher observersOfObject:... keyPath:...]. Make sure you disable this when running normally.\n\n");
+		}
+		
+		foundOut = YES;
+	}
+	
+	return shouldKeepTrack;
+}
+
++ nonretainedObjectsToObservers;
+{
+	if (!nonretainedObjectsToObservers)
+		nonretainedObjectsToObservers = [NSMutableDictionary new];
+	
+	return nonretainedObjectsToObservers;
+}
+
++ addObserver:(L0KVODispatcher*) d ofKeyPath:(NSString*) path ofObject:(id) o;
+{
+	if (![self shouldKeepTrackOfObservers]) return;
+	
+	NSValue* v = [NSValue valueWithNonretainedObject:o];
+	NSMutableDictionary* n2o = [self nonretainedObjectsToObservers];
+	NSMutableDictionary* keysToDispatchers = [n2o objectForKey:v];
+	
+	if (!keysToDispatchers) {
+		keysToDispatchers = [NSMutableDictionary dictionary];
+		[n2o setObject:keysToDispatchers forKey:v];
+	}
+	
+	NSMutableArray* dispatchers = [keysToDispatchers objectForKey:path];
+	if (!dispatchers) {
+		dispatchers = [NSMutableArray array];
+		[keysToDispatchers setObject:dispatchers forKey:path];
+	}
+	
+	[dispatchers addObject:d];
+}
+
++ removeObserver:(L0KVODispatcher*) d ofKeyPath:(NSString*) path ofObject:(id) o;
+{
+	if (![self shouldKeepTrackOfObservers]) return;
+	
+	NSValue* v = [NSValue valueWithNonretainedObject:o];
+	NSMutableDictionary* n2o = [self nonretainedObjectsToObservers];
+	
+	NSMutableDictionary* keysToDispatchers = [n2o objectForKey:v];
+	if (!keysToDispatchers)
+		return;
+	
+	NSMutableArray* dispatchers = [keysToDispatchers objectForKey:path];
+	if (!dispatchers)
+		return;
+	
+	[dispatchers removeObject:d];
+	if ([dispatchers count] == 0)
+		[keysToDispatchers removeObjectForKey:path];
+	if ([keysToDispatchers count] == 0)
+		[n2o removeObjectForKey:v];
+}
+
+- (void) willObserveKeyPath:(NSString*) kp ofObject:(id) o;
+{
+	[[self class] addObserver:self ofKeyPath:kp ofObject:o];
+}
+
+- (void) didEndObservingKeyPath:(NSString*) kp ofObject:(id) o;
+{
+	[[self class] removeObserver:self ofKeyPath:kp ofObject:o];
+}
+
++ (NSDictionary*) observersOfObject:(id) o;
+{
+	if (![self shouldKeepTrackOfObservers]) return nil;
+
+	return [[self nonretainedObjectsToObservers] objectForKey:[NSValue valueWithNonretainedObject:o]];
+}
+
++ (NSArray*) observersOfObject:(id) o keyPath:(NSString*) path;
+{
+	if (![self shouldKeepTrackOfObservers]) return nil;
+
+	return [[self observersOfObject:o] objectForKey:path];
+}
+
+@end
+
+#endif
