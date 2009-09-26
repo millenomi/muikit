@@ -86,7 +86,7 @@ typedef void (^L0KVODispatcherSetChangeBlock)(id object);
 /* DEBUG FACILITIES.
  KVO is hairy and brittle and opaque and I shouldn't really have based a product around it so yeah.
  L0KVODispatcher provides some debugging facilities to help fixing KVO trouble, especially someone-is-still-observing-on-dealloc KVO trouble.
- These facilities are disabled by default. To enabled:
+ These facilities are disabled by default. To enable:
  
   - Make sure the copy of MuiKit you're linking to has the preprocessor directive DEBUG=1 set -- this happens automatically if you embed MuiKit by referencing the project and you use the Debug build style.
   - Do the following:
