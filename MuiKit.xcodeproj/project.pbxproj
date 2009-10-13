@@ -122,6 +122,8 @@
 		15C0401410110ECB0090B009 /* NSURL+L0URLResolvingRedirects.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C0401210110ECB0090B009 /* NSURL+L0URLResolvingRedirects.m */; };
 		15C04047101114A30090B009 /* NSURL+L0URLResolvingRedirects.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15C0401110110ECB0090B009 /* NSURL+L0URLResolvingRedirects.h */; };
 		15C0C1680FDFD03B005A75B6 /* L0KVODictionaryAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15C0C1540FDFCF22005A75B6 /* L0KVODictionaryAdditions.h */; };
+		15C34BD31084F53B00CEA68A /* L0WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C34BD11084F53B00CEA68A /* L0WebViewController.m */; };
+		15C34BD41084F55A00CEA68A /* L0WebViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15C34BD01084F53B00CEA68A /* L0WebViewController.h */; };
 		15C97855103C863900BA4071 /* NSData+L0IPAddressTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C97853103C863900BA4071 /* NSData+L0IPAddressTools.m */; };
 		15C9785A103C8D0600BA4071 /* NSData+L0IPAddressTools.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15C97852103C863900BA4071 /* NSData+L0IPAddressTools.h */; };
 		15F603B8105BD80300F73794 /* L0Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F603B6105BD80300F73794 /* L0Map.m */; };
@@ -199,6 +201,7 @@
 				15C04047101114A30090B009 /* NSURL+L0URLResolvingRedirects.h in CopyFiles */,
 				15C9785A103C8D0600BA4071 /* NSData+L0IPAddressTools.h in CopyFiles */,
 				15F60438105BDED500F73794 /* L0Map.h in CopyFiles */,
+				15C34BD41084F55A00CEA68A /* L0WebViewController.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +249,8 @@
 		15C0401110110ECB0090B009 /* NSURL+L0URLResolvingRedirects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+L0URLResolvingRedirects.h"; sourceTree = "<group>"; };
 		15C0401210110ECB0090B009 /* NSURL+L0URLResolvingRedirects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+L0URLResolvingRedirects.m"; sourceTree = "<group>"; };
 		15C0C1540FDFCF22005A75B6 /* L0KVODictionaryAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0KVODictionaryAdditions.h; sourceTree = "<group>"; };
+		15C34BD01084F53B00CEA68A /* L0WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0WebViewController.h; sourceTree = "<group>"; };
+		15C34BD11084F53B00CEA68A /* L0WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0WebViewController.m; sourceTree = "<group>"; };
 		15C97852103C863900BA4071 /* NSData+L0IPAddressTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+L0IPAddressTools.h"; sourceTree = "<group>"; };
 		15C97853103C863900BA4071 /* NSData+L0IPAddressTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+L0IPAddressTools.m"; sourceTree = "<group>"; };
 		15F603B5105BD80300F73794 /* L0Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0Map.h; sourceTree = "<group>"; };
@@ -339,6 +344,7 @@
 				154B02150F78167C0082109B /* Draggable Views */,
 				153B7FE30FF2054000DDFD16 /* Network Activity Indicator */,
 				15F6041A105BDEB500F73794 /* Map */,
+				15C34BD51084F55F00CEA68A /* Web View Controller */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -448,6 +454,15 @@
 				1518EF551010B69D009C334E /* L0KVODispatcher.m */,
 			);
 			name = "KVO Additions";
+			sourceTree = "<group>";
+		};
+		15C34BD51084F55F00CEA68A /* Web View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				15C34BD01084F53B00CEA68A /* L0WebViewController.h */,
+				15C34BD11084F53B00CEA68A /* L0WebViewController.m */,
+			);
+			name = "Web View Controller";
 			sourceTree = "<group>";
 		};
 		15C97851103C861900BA4071 /* IP address management */ = {
@@ -711,6 +726,7 @@
 				15C0401410110ECB0090B009 /* NSURL+L0URLResolvingRedirects.m in Sources */,
 				15C97855103C863900BA4071 /* NSData+L0IPAddressTools.m in Sources */,
 				15F603B8105BD80300F73794 /* L0Map.m in Sources */,
+				15C34BD31084F53B00CEA68A /* L0WebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
