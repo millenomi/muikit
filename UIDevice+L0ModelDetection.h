@@ -19,6 +19,7 @@ typedef NSUInteger L0DeviceFamily;
 @interface UIDevice (L0ModelDetection)
 
 @property(readonly) L0DeviceFamily deviceFamily;
+@property(readonly) NSString* internalModelName;
 
 @end
 
