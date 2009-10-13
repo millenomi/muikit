@@ -9,6 +9,12 @@
 #import "L0KVODispatcher.h"
 #import "L0KVODictionaryAdditions.h"
 
+#if kL0KVODispatcherAllowVerboseLogging
+#define L0KVOLog L0Log
+#else
+#define L0KVOLog(...)
+#endif
+
 L0UniquePointerConstant(kL0KVODispatcherObservingContext);
 
 @interface L0KVODispatcher ()
@@ -84,7 +90,7 @@ void L0KVODispatcherNoteEndReentry(id object, NSString* keyPath)
 	[object addObserver:self forKeyPath:keyPath options:options context:(void*) kL0KVODispatcherObservingContext];
 	addingReentryCount--;
 	
-	L0Log(@"watching (a %@).%@ using %@", [object class], keyPath, selectorStringOrBlock);
+	L0KVOLog(@"watching (a %@).%@ using %@", [object class], keyPath, selectorStringOrBlock);
 #if DEBUG
 	[self willObserveKeyPath:keyPath ofObject:object];
 #endif
@@ -137,7 +143,7 @@ void L0KVODispatcherNoteEndReentry(id object, NSString* keyPath)
 	NSMutableDictionary* selectorsByKeyPath = [selectorsByKeyPathsAndObjects objectForKey:ptr];
 
 	if ([selectorsByKeyPath objectForKey:keyPath]) {
-		L0Log(@"stopping observation of (a %@).%@", [object class], keyPath);
+		L0KVOLog(@"stopping observation of (a %@).%@", [object class], keyPath);
 		
 		[selectorsByKeyPath removeObjectForKey:keyPath];
 		if ([selectorsByKeyPath count] == 0)
