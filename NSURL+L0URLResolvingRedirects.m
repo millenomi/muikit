@@ -38,12 +38,22 @@
 
 - (void) beginResolvingRedirectsWithDelegate:(id) delegate selector:(SEL) selector;
 {
+	if (![[self scheme] isEqual:@"http"] && ![[self scheme] isEqual:@"https"]) {
+		[delegate performSelector:selector withObject:self];
+		return;
+	}
+	
 	[[[L0URLRedirectsResolver alloc] initWithURL:self delegate:delegate selector:selector] autorelease];
 }
 
 #if __BLOCKS__
 - (void) beginResolvingRedirectsAndInvoke:(L0URLResolvingDidEndBlock) block;
 {
+	if (![[self scheme] isEqual:@"http"] && ![[self scheme] isEqual:@"https"]) {
+		block(self);
+		return;
+	}
+	
 	[[[L0URLRedirectsResolver alloc] initWithURL:self didEndBlock:block] autorelease];
 }
 #endif
@@ -84,7 +94,8 @@
 
 - (NSURLRequest*) connection:(NSURLConnection*) c willSendRequest:(NSURLRequest*) request redirectResponse:(NSURLResponse*) response;
 {
-	self.lastSeenURL = [response URL];
+	if (response)
+		self.lastSeenURL = [response URL];
     return request;
 }
 
