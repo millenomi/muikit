@@ -164,9 +164,7 @@
 	[self performSelector:@selector(showAlertIfNeeded) withObject:nil afterDelay:2.0];
 }
 
-- (NSBundle*) _resourcesBundle {
-	
-}
+@synthesize _resourcesBundle;
 
 @end
 
