@@ -164,8 +164,6 @@
 	[self performSelector:@selector(showAlertIfNeeded) withObject:nil afterDelay:2.0];
 }
 
-@synthesize _resourcesBundle;
-
 @end
 
 #endif
