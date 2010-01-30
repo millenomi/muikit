@@ -6,3 +6,4 @@ TemporaryItems
 .DS_Store
 Compiled Locales
 Local*.xcconfig
+*.xcodeproj/*.perspectivev3
