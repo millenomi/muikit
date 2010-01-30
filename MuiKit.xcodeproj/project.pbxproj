@@ -126,6 +126,8 @@
 		15C34BD41084F55A00CEA68A /* L0WebViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15C34BD01084F53B00CEA68A /* L0WebViewController.h */; };
 		15C97855103C863900BA4071 /* NSData+L0IPAddressTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C97853103C863900BA4071 /* NSData+L0IPAddressTools.m */; };
 		15C9785A103C8D0600BA4071 /* NSData+L0IPAddressTools.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15C97852103C863900BA4071 /* NSData+L0IPAddressTools.h */; };
+		15CC62B3111423D000CD96C5 /* L0Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC62B1111423D000CD96C5 /* L0Keyboard.m */; };
+		15CC62B5111423E400CD96C5 /* L0Keyboard.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15CC62B0111423D000CD96C5 /* L0Keyboard.h */; };
 		15F603B8105BD80300F73794 /* L0Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F603B6105BD80300F73794 /* L0Map.m */; };
 		15F60438105BDED500F73794 /* L0Map.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15F603B5105BD80300F73794 /* L0Map.h */; };
 		15FD32410FB9600000EB8ED5 /* L0ActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD323F0FB9600000EB8ED5 /* L0ActionSheet.m */; };
@@ -202,6 +204,7 @@
 				15C9785A103C8D0600BA4071 /* NSData+L0IPAddressTools.h in CopyFiles */,
 				15F60438105BDED500F73794 /* L0Map.h in CopyFiles */,
 				15C34BD41084F55A00CEA68A /* L0WebViewController.h in CopyFiles */,
+				15CC62B5111423E400CD96C5 /* L0Keyboard.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +256,8 @@
 		15C34BD11084F53B00CEA68A /* L0WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0WebViewController.m; sourceTree = "<group>"; };
 		15C97852103C863900BA4071 /* NSData+L0IPAddressTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+L0IPAddressTools.h"; sourceTree = "<group>"; };
 		15C97853103C863900BA4071 /* NSData+L0IPAddressTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+L0IPAddressTools.m"; sourceTree = "<group>"; };
+		15CC62B0111423D000CD96C5 /* L0Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0Keyboard.h; sourceTree = "<group>"; };
+		15CC62B1111423D000CD96C5 /* L0Keyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0Keyboard.m; sourceTree = "<group>"; };
 		15F603B5105BD80300F73794 /* L0Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0Map.h; sourceTree = "<group>"; };
 		15F603B6105BD80300F73794 /* L0Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0Map.m; sourceTree = "<group>"; };
 		15FD323E0FB9600000EB8ED5 /* L0ActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L0ActionSheet.h; sourceTree = "<group>"; };
@@ -331,6 +336,7 @@
 		154B02100F78163C0082109B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				15CC62AF111423B100CD96C5 /* Keyboard management */,
 				15C97851103C861900BA4071 /* IP address management */,
 				15C0C1530FDFCEF1005A75B6 /* KVO Additions */,
 				15AF56390FBAAE9A00BE7F71 /* URL Handling */,
@@ -472,6 +478,15 @@
 				15C97853103C863900BA4071 /* NSData+L0IPAddressTools.m */,
 			);
 			name = "IP address management";
+			sourceTree = "<group>";
+		};
+		15CC62AF111423B100CD96C5 /* Keyboard management */ = {
+			isa = PBXGroup;
+			children = (
+				15CC62B0111423D000CD96C5 /* L0Keyboard.h */,
+				15CC62B1111423D000CD96C5 /* L0Keyboard.m */,
+			);
+			name = "Keyboard management";
 			sourceTree = "<group>";
 		};
 		15F6041A105BDEB500F73794 /* Map */ = {
@@ -727,6 +742,7 @@
 				15C97855103C863900BA4071 /* NSData+L0IPAddressTools.m in Sources */,
 				15F603B8105BD80300F73794 /* L0Map.m in Sources */,
 				15C34BD31084F53B00CEA68A /* L0WebViewController.m in Sources */,
+				15CC62B3111423D000CD96C5 /* L0Keyboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
