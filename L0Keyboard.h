@@ -111,11 +111,12 @@
  PLEASE NOTE 3: Only ONE keyboard bar controller at a time, thank you. Remove all other ones before adding a new one.
  */
 @interface L0KeyboardBarController : NSObject <L0KeyboardObserver> {
-	UIView* view;
+	UIView* view; UIResponder* inputResponder;
 	CGFloat height;
 	UIWindow* window;
 	BOOL overlapsContent;
 	BOOL active;
+	BOOL hasEverAnimated;
 }
 
 @property(retain) UIView* view;
@@ -129,7 +130,14 @@
 // The window where the view will be displayed. If unset, the current key window will be used.
 @property(retain) UIWindow* window;
 
+// If the text field or other text input responder is inside the bar view, there's a catch-22 (you can't make it first responder while not in a window, but the bar controller removes it from the window until the keyboard comes up). This works around the issue -- set the UIResponder that invokes the keyboard as the .inputResponder below, and use this class's -makeInputResponderFirst method instead of that object's -becomeFirstResponder. This will set up things so that the keyboard will come up for the responder AND the bar will work correctly.
+// For this to work, the input responder MUST be either the .view or a subview of it.
+// The input responder is NOT retained. Make sure you unset it if you change the view.
+@property(assign) UIResponder* inputResponder;
+- (void) makeInputResponderFirst;
+
 // If YES, the view will be added without informing other views of its presence. If NO, the keyboard's bar height (-[L0Keyboard barHeight]) will be set to match the view's height, which will cause keyboard rubber bands to resize their views.
+// If NO, it is recommended that the view be opaque.
 // Default is NO, but the constructor sets this to YES in some cases. See below.
 @property BOOL overlapsContent;
 

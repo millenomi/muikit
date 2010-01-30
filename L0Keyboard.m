@@ -169,6 +169,7 @@
 	if (self.animating) {
 		[UIView setAnimationDuration:self.animationDuration];
 		[UIView setAnimationCurve:self.animationCurve];
+		[UIView setAnimationBeginsFromCurrentState:YES];
 	}
 }
 
@@ -242,7 +243,7 @@
 
 @implementation L0KeyboardBarController
 
-@synthesize view, window, overlapsContent;
+@synthesize view, inputResponder, window, overlapsContent;
 
 - (void) dealloc
 {
@@ -305,23 +306,34 @@
 {
 	active = NO;
 	k.barHeight = 0.0;
+	[self.view removeFromSuperview];
 }
 
 - (void) keyboardWillAppear:(L0Keyboard *)k;
-{
-	UIWindow* w = self.window;
-	if (!w)
-		w = [[UIApplication sharedApplication] keyWindow];
-	
+{	
 	[self updateBarHeight];
 
 	CGRect r = self.view.frame;
 	r.size.width = k.bounds.size.width;
 	r.origin = k.animating? k.animationStartOrigin : k.origin;
 	self.view.frame = r;
-	[w addSubview:self.view];
+	
+	if (!self.view.superview) {
+		UIWindow* w = self.window;
+		if (!w)
+			w = [[UIApplication sharedApplication] keyWindow];
+		
+		BOOL aniOn = [UIView areAnimationsEnabled];
+		[UIView setAnimationsEnabled:NO];
+		[w addSubview:self.view];
+		[UIView setAnimationsEnabled:aniOn];
+	}
+	
+	[self.view.superview bringSubviewToFront:self.view];
 
 	[k beginViewAnimationsAlongsideKeyboard:nil context:NULL];
+	[UIView setAnimationBeginsFromCurrentState:hasEverAnimated];
+	hasEverAnimated = YES;
 	
 	r.origin = k.origin;
 	r.origin.y -= r.size.height;
@@ -346,7 +358,9 @@
 
 - (void) disappearAnimation:(NSString*) ani finished:(BOOL) fin context:(void*) none;
 {
-	[self.view removeFromSuperview];
+	if (![L0Keyboard sharedInstance].shown && ![L0Keyboard sharedInstance].animating)
+		[self.view removeFromSuperview];
+	
 	[self autorelease]; // balances the one in keyboardWillDisappear:
 }
 
@@ -368,6 +382,32 @@
 		([v isKindOfClass:[UIToolbar class]] || [v isKindOfClass:[UINavigationBar class]] || [v isKindOfClass:[UISearchBar class]]) && [(id)v isTranslucent];
 	
 	return me;
+}
+
+- (void) makeInputResponderFirst;
+{
+	if ([self.inputResponder isFirstResponder])
+		return;
+	
+	UIWindow* w = self.window;
+	if (!w)
+		w = [[UIApplication sharedApplication] keyWindow];
+		
+	CGRect r = self.view.frame;
+	r.origin = CGPointMake(0, w.bounds.size.height);
+	self.view.frame = r;
+	
+	if (self.view.superview != w) {
+		if (self.view.superview)
+			[view removeFromSuperview];
+		
+		BOOL aniOn = [UIView areAnimationsEnabled];
+		[UIView setAnimationsEnabled:NO];
+		[w addSubview:self.view];
+		[UIView setAnimationsEnabled:aniOn];
+	}
+	
+	[self.inputResponder becomeFirstResponder];
 }
 
 @end
