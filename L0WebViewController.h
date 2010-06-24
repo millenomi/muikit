@@ -32,6 +32,7 @@
 
 @property(readonly) CGRect webViewFrame; // The frame the web view will have on add. Default = self.view's bounds.
 - (void) insertWebViewAsSubview; // Adds the web view to the hierarchy. The default is to add through addSubview: of self.view.
+@property(readonly) BOOL webViewAutoresizes; // if YES, the web view will be set to flexible width and height.
 
 @end
 

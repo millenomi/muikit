@@ -48,6 +48,11 @@
 	return self.view.bounds;
 }
 
+- (BOOL) webViewAutoresizes;
+{
+	return YES;
+}
+
 - (void) viewDidUnload;
 {
 	self.webView = nil;
@@ -60,6 +65,9 @@
 	if (!self.webView) {
 		self.webView = [[[UIWebView alloc] initWithFrame:self.webViewFrame] autorelease];
 		self.webView.delegate = self;
+		
+		if (self.webViewAutoresizes)
+			self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		
 		if (self.initialURL)
 			[self.webView loadRequest:[NSURLRequest requestWithURL:self.initialURL]];
@@ -76,7 +84,7 @@
 
 - (void) viewDidDisappear:(BOOL) animated;
 {
-	[super viewWillAppear:animated];
+	[super viewDidDisappear:animated];
 	[self.webView removeFromSuperview];
 	self.webView = nil;
 }
