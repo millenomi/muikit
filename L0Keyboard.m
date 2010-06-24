@@ -6,7 +6,7 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED < 30200
 
 #import "L0Keyboard.h"
 
