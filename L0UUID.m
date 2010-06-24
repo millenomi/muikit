@@ -48,8 +48,8 @@
 }
 
 - (NSString*) stringValue {
-	CFStringRef r = CFUUIDCreateString(kCFAllocatorDefault, uuid);
-	return [(NSString*)r autorelease];
+	NSString* r = [NSMakeCollectable(CFUUIDCreateString(kCFAllocatorDefault, uuid)) autorelease];
+	return r;
 }
 
 - (NSData*) dataValue {
