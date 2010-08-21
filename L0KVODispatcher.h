@@ -115,8 +115,8 @@ typedef void (^L0KVODispatcherSetChangeBlock)(id object);
 //		(key path observed 2) => [ (dispatcher a), (dispatcher b) ... ],
 // }, ...
 + nonretainedObjectsToObservers;
-+ addObserver:(L0KVODispatcher*) d ofKeyPath:(NSString*) path ofObject:(id) o;
-+ removeObserver:(L0KVODispatcher*) d ofKeyPath:(NSString*) path ofObject:(id) o;
++ (void) addObserver:(L0KVODispatcher*) d ofKeyPath:(NSString*) path ofObject:(id) o;
++ (void) removeObserver:(L0KVODispatcher*) d ofKeyPath:(NSString*) path ofObject:(id) o;
 
 // IF debug facilities are on, you can break on these methods.
 - (void) willObserveKeyPath:(NSString*) kp ofObject:(id) o;

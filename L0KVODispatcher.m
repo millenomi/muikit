@@ -365,7 +365,7 @@ static NSMutableDictionary* nonretainedObjectsToObservers = nil;
 	return nonretainedObjectsToObservers;
 }
 
-+ addObserver:(L0KVODispatcher*) d ofKeyPath:(NSString*) path ofObject:(id) o;
++ (void) addObserver:(L0KVODispatcher*) d ofKeyPath:(NSString*) path ofObject:(id) o;
 {
 	if (![self shouldKeepTrackOfObservers]) return;
 	
@@ -387,7 +387,7 @@ static NSMutableDictionary* nonretainedObjectsToObservers = nil;
 	[dispatchers addObject:d];
 }
 
-+ removeObserver:(L0KVODispatcher*) d ofKeyPath:(NSString*) path ofObject:(id) o;
++ (void) removeObserver:(L0KVODispatcher*) d ofKeyPath:(NSString*) path ofObject:(id) o;
 {
 	if (![self shouldKeepTrackOfObservers]) return;
 	

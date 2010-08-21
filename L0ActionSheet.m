@@ -17,6 +17,7 @@
 - (id)initWithTitle:(NSString *)title delegate:(id<UIActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...;
 {
 	[NSException raise:@"L0MethodUnavailableException" format:@"You cannot use the convenience initializer with L0ActionSheet instances. Use init instead."];
+	return nil;
 }
 
 - (id) init;
@@ -37,6 +38,7 @@
 - (NSInteger) addButtonWithTitle:(NSString*) title;
 {
 	[NSException raise:@"L0MethodUnavailableException" format:@"You cannot use this method with L0ActionSheet instances. Use addButtonWithTitle:identifier: instead."];
+	return -1;
 }
 
 - (NSInteger) addButtonWithTitle:(NSString*) title identifier:(id) identifier;
