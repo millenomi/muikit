@@ -617,6 +617,7 @@
 			isa = PBXProject;
 			buildConfigurationList = 154B01E10F7815560082109B /* Build configuration list for PBXProject "MuiKit" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				English,

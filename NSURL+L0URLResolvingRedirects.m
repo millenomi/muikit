@@ -94,8 +94,8 @@
 
 - (NSURLRequest*) connection:(NSURLConnection*) c willSendRequest:(NSURLRequest*) request redirectResponse:(NSURLResponse*) response;
 {
-	if (response)
-		self.lastSeenURL = [response URL];
+	if (request)
+		self.lastSeenURL = [request URL];
     return request;
 }
 
